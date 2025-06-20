@@ -87,8 +87,8 @@ namespace QLTV2
             gcTG.Enabled = false;
             bdsTG.AddNew();
 
-            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = false;
-            btnGhi.Enabled = btnPhuchoi.Enabled = btnReload.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = false;
+            btnGhi.Enabled = btnReload.Enabled = true;
             txtHoten.Focus();
         }
 
@@ -218,7 +218,11 @@ namespace QLTV2
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            // Xóa bảng con trước bảng cha
+            if (bdsTG.Current != null && bdsTG.IsBindingSuspended == false)
+            {
+                bdsTG.CancelEdit();
+            }
+
             dS.TACGIA_SACH.Clear();
             dS.TACGIA.Clear();
             dS.DAUSACH.Clear();
@@ -227,17 +231,17 @@ namespace QLTV2
             dS.NGONNGU.Clear();
 
             THELOAITableAdapter.Fill(dS.THELOAI);
-
             NGANTUTableAdapter.Fill(dS.NGANTU);
-
             NGONNGUTableAdapter.Fill(dS.NGONNGU);
-
             DAUSACHTableAdapter.Fill(dS.DAUSACH);
-
             this.TACGIATableAdapter.Fill(this.dS.TACGIA);
             this.TACGIA_SACHTableAdapter.Fill(this.dS.TACGIA_SACH);
 
+            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = true;
+            GroupBox1.Enabled = false;
+            gcTG.Enabled = true;
         }
+
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Close();

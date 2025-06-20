@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label mANVLabel;
             System.Windows.Forms.Label hONVLabel;
             System.Windows.Forms.Label tENNVLabel;
             System.Windows.Forms.Label gIOITINHLabel;
@@ -55,6 +54,13 @@
             this.tableAdapterManager = new QLTV2.DSTableAdapters.TableAdapterManager();
             this.CT_PHIEUMUONTableAdapter = new QLTV2.DSTableAdapters.CT_PHIEUMUONTableAdapter();
             this.gcNV = new System.Windows.Forms.DataGridView();
+            this.gcc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbColPhai = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupBox1 = new DevExpress.XtraEditors.GroupControl();
             this.btnFindNV = new System.Windows.Forms.Button();
             this.txtTimkiem = new System.Windows.Forms.TextBox();
@@ -64,19 +70,10 @@
             this.cmbPhai = new System.Windows.Forms.ComboBox();
             this.txtTEN = new System.Windows.Forms.TextBox();
             this.txtHO = new System.Windows.Forms.TextBox();
-            this.txtMANV = new System.Windows.Forms.TextBox();
             this.bdsCTPM = new System.Windows.Forms.BindingSource(this.components);
             this.bdsPM = new System.Windows.Forms.BindingSource(this.components);
             this.PHIEUMUONTableAdapter = new QLTV2.DSTableAdapters.PHIEUMUONTableAdapter();
             this.nHANVIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gcc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbColPhai = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            mANVLabel = new System.Windows.Forms.Label();
             hONVLabel = new System.Windows.Forms.Label();
             tENNVLabel = new System.Windows.Forms.Label();
             gIOITINHLabel = new System.Windows.Forms.Label();
@@ -94,19 +91,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nHANVIENBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // mANVLabel
-            // 
-            mANVLabel.AutoSize = true;
-            mANVLabel.Location = new System.Drawing.Point(41, 55);
-            mANVLabel.Name = "mANVLabel";
-            mANVLabel.Size = new System.Drawing.Size(46, 16);
-            mANVLabel.TabIndex = 0;
-            mANVLabel.Text = "MANV:";
-            // 
             // hONVLabel
             // 
             hONVLabel.AutoSize = true;
-            hONVLabel.Location = new System.Drawing.Point(249, 51);
+            hONVLabel.Location = new System.Drawing.Point(42, 46);
             hONVLabel.Name = "hONVLabel";
             hONVLabel.Size = new System.Drawing.Size(45, 16);
             hONVLabel.TabIndex = 2;
@@ -115,7 +103,7 @@
             // tENNVLabel
             // 
             tENNVLabel.AutoSize = true;
-            tENNVLabel.Location = new System.Drawing.Point(482, 47);
+            tENNVLabel.Location = new System.Drawing.Point(243, 46);
             tENNVLabel.Name = "tENNVLabel";
             tENNVLabel.Size = new System.Drawing.Size(51, 16);
             tENNVLabel.TabIndex = 4;
@@ -133,7 +121,7 @@
             // dIACHILabel
             // 
             dIACHILabel.AutoSize = true;
-            dIACHILabel.Location = new System.Drawing.Point(692, 43);
+            dIACHILabel.Location = new System.Drawing.Point(481, 46);
             dIACHILabel.Name = "dIACHILabel";
             dIACHILabel.Size = new System.Drawing.Size(52, 16);
             dIACHILabel.TabIndex = 8;
@@ -332,124 +320,6 @@
             this.gcNV.Size = new System.Drawing.Size(1130, 263);
             this.gcNV.TabIndex = 9;
             // 
-            // GroupBox1
-            // 
-            this.GroupBox1.Controls.Add(this.btnFindNV);
-            this.GroupBox1.Controls.Add(this.txtTimkiem);
-            this.GroupBox1.Controls.Add(eMAILLabel);
-            this.GroupBox1.Controls.Add(this.txtEMAIL);
-            this.GroupBox1.Controls.Add(dIENTHOAILabel);
-            this.GroupBox1.Controls.Add(this.txtPHONE);
-            this.GroupBox1.Controls.Add(dIACHILabel);
-            this.GroupBox1.Controls.Add(this.txtDIACHI);
-            this.GroupBox1.Controls.Add(gIOITINHLabel);
-            this.GroupBox1.Controls.Add(this.cmbPhai);
-            this.GroupBox1.Controls.Add(tENNVLabel);
-            this.GroupBox1.Controls.Add(this.txtTEN);
-            this.GroupBox1.Controls.Add(hONVLabel);
-            this.GroupBox1.Controls.Add(this.txtHO);
-            this.GroupBox1.Controls.Add(mANVLabel);
-            this.GroupBox1.Controls.Add(this.txtMANV);
-            this.GroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.GroupBox1.Location = new System.Drawing.Point(0, 288);
-            this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(1130, 248);
-            this.GroupBox1.TabIndex = 10;
-            this.GroupBox1.Text = "groupControl1";
-            // 
-            // btnFindNV
-            // 
-            this.btnFindNV.Location = new System.Drawing.Point(1005, 114);
-            this.btnFindNV.Name = "btnFindNV";
-            this.btnFindNV.Size = new System.Drawing.Size(75, 23);
-            this.btnFindNV.TabIndex = 15;
-            this.btnFindNV.Text = "Tìm kiếm";
-            this.btnFindNV.UseVisualStyleBackColor = true;
-            this.btnFindNV.Click += new System.EventHandler(this.btnFindNV_Click);
-            // 
-            // txtTimkiem
-            // 
-            this.txtTimkiem.Location = new System.Drawing.Point(750, 113);
-            this.txtTimkiem.Name = "txtTimkiem";
-            this.txtTimkiem.Size = new System.Drawing.Size(212, 23);
-            this.txtTimkiem.TabIndex = 14;
-            // 
-            // txtEMAIL
-            // 
-            this.txtEMAIL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "EMAIL", true));
-            this.txtEMAIL.Location = new System.Drawing.Point(300, 110);
-            this.txtEMAIL.Name = "txtEMAIL";
-            this.txtEMAIL.Size = new System.Drawing.Size(100, 23);
-            this.txtEMAIL.TabIndex = 13;
-            // 
-            // txtPHONE
-            // 
-            this.txtPHONE.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "DIENTHOAI", true));
-            this.txtPHONE.Location = new System.Drawing.Point(93, 114);
-            this.txtPHONE.Name = "txtPHONE";
-            this.txtPHONE.Size = new System.Drawing.Size(100, 23);
-            this.txtPHONE.TabIndex = 11;
-            // 
-            // txtDIACHI
-            // 
-            this.txtDIACHI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "DIACHI", true));
-            this.txtDIACHI.Location = new System.Drawing.Point(750, 40);
-            this.txtDIACHI.Name = "txtDIACHI";
-            this.txtDIACHI.Size = new System.Drawing.Size(100, 23);
-            this.txtDIACHI.TabIndex = 9;
-            // 
-            // cmbPhai
-            // 
-            this.cmbPhai.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "GIOITINH", true));
-            this.cmbPhai.FormattingEnabled = true;
-            this.cmbPhai.Location = new System.Drawing.Point(539, 113);
-            this.cmbPhai.Name = "cmbPhai";
-            this.cmbPhai.Size = new System.Drawing.Size(121, 24);
-            this.cmbPhai.TabIndex = 7;
-            // 
-            // txtTEN
-            // 
-            this.txtTEN.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "TENNV", true));
-            this.txtTEN.Location = new System.Drawing.Point(539, 44);
-            this.txtTEN.Name = "txtTEN";
-            this.txtTEN.Size = new System.Drawing.Size(100, 23);
-            this.txtTEN.TabIndex = 5;
-            // 
-            // txtHO
-            // 
-            this.txtHO.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "HONV", true));
-            this.txtHO.Location = new System.Drawing.Point(300, 48);
-            this.txtHO.Name = "txtHO";
-            this.txtHO.Size = new System.Drawing.Size(100, 23);
-            this.txtHO.TabIndex = 3;
-            // 
-            // txtMANV
-            // 
-            this.txtMANV.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "MANV", true));
-            this.txtMANV.Location = new System.Drawing.Point(93, 52);
-            this.txtMANV.Name = "txtMANV";
-            this.txtMANV.Size = new System.Drawing.Size(100, 23);
-            this.txtMANV.TabIndex = 1;
-            // 
-            // bdsCTPM
-            // 
-            this.bdsCTPM.DataMember = "FK__CT_PHIEUM__MANVN__440B1D61";
-            this.bdsCTPM.DataSource = this.bdsNV;
-            // 
-            // bdsPM
-            // 
-            this.bdsPM.DataMember = "FK__PHIEUMUON__MANV__3F466844";
-            this.bdsPM.DataSource = this.bdsNV;
-            // 
-            // PHIEUMUONTableAdapter
-            // 
-            this.PHIEUMUONTableAdapter.ClearBeforeFill = true;
-            // 
-            // nHANVIENBindingSource
-            // 
-            this.nHANVIENBindingSource.DataMember = "NHANVIEN";
-            this.nHANVIENBindingSource.DataSource = this.dS;
-            // 
             // gcc
             // 
             this.gcc.DataPropertyName = "MANV";
@@ -501,6 +371,114 @@
             this.dataGridViewTextBoxColumn6.HeaderText = "EMAIL";
             this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // GroupBox1
+            // 
+            this.GroupBox1.Controls.Add(this.btnFindNV);
+            this.GroupBox1.Controls.Add(this.txtTimkiem);
+            this.GroupBox1.Controls.Add(eMAILLabel);
+            this.GroupBox1.Controls.Add(this.txtEMAIL);
+            this.GroupBox1.Controls.Add(dIENTHOAILabel);
+            this.GroupBox1.Controls.Add(this.txtPHONE);
+            this.GroupBox1.Controls.Add(dIACHILabel);
+            this.GroupBox1.Controls.Add(this.txtDIACHI);
+            this.GroupBox1.Controls.Add(gIOITINHLabel);
+            this.GroupBox1.Controls.Add(this.cmbPhai);
+            this.GroupBox1.Controls.Add(tENNVLabel);
+            this.GroupBox1.Controls.Add(this.txtTEN);
+            this.GroupBox1.Controls.Add(hONVLabel);
+            this.GroupBox1.Controls.Add(this.txtHO);
+            this.GroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GroupBox1.Location = new System.Drawing.Point(0, 288);
+            this.GroupBox1.Name = "GroupBox1";
+            this.GroupBox1.Size = new System.Drawing.Size(1130, 248);
+            this.GroupBox1.TabIndex = 10;
+            this.GroupBox1.Text = "groupControl1";
+            // 
+            // btnFindNV
+            // 
+            this.btnFindNV.Location = new System.Drawing.Point(1014, 80);
+            this.btnFindNV.Name = "btnFindNV";
+            this.btnFindNV.Size = new System.Drawing.Size(75, 23);
+            this.btnFindNV.TabIndex = 15;
+            this.btnFindNV.Text = "Tìm kiếm";
+            this.btnFindNV.UseVisualStyleBackColor = true;
+            this.btnFindNV.Click += new System.EventHandler(this.btnFindNV_Click);
+            // 
+            // txtTimkiem
+            // 
+            this.txtTimkiem.Location = new System.Drawing.Point(759, 79);
+            this.txtTimkiem.Name = "txtTimkiem";
+            this.txtTimkiem.Size = new System.Drawing.Size(212, 23);
+            this.txtTimkiem.TabIndex = 14;
+            // 
+            // txtEMAIL
+            // 
+            this.txtEMAIL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "EMAIL", true));
+            this.txtEMAIL.Location = new System.Drawing.Point(300, 110);
+            this.txtEMAIL.Name = "txtEMAIL";
+            this.txtEMAIL.Size = new System.Drawing.Size(100, 23);
+            this.txtEMAIL.TabIndex = 13;
+            // 
+            // txtPHONE
+            // 
+            this.txtPHONE.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "DIENTHOAI", true));
+            this.txtPHONE.Location = new System.Drawing.Point(93, 114);
+            this.txtPHONE.Name = "txtPHONE";
+            this.txtPHONE.Size = new System.Drawing.Size(100, 23);
+            this.txtPHONE.TabIndex = 11;
+            // 
+            // txtDIACHI
+            // 
+            this.txtDIACHI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "DIACHI", true));
+            this.txtDIACHI.Location = new System.Drawing.Point(539, 43);
+            this.txtDIACHI.Name = "txtDIACHI";
+            this.txtDIACHI.Size = new System.Drawing.Size(100, 23);
+            this.txtDIACHI.TabIndex = 9;
+            // 
+            // cmbPhai
+            // 
+            this.cmbPhai.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "GIOITINH", true));
+            this.cmbPhai.FormattingEnabled = true;
+            this.cmbPhai.Location = new System.Drawing.Point(539, 113);
+            this.cmbPhai.Name = "cmbPhai";
+            this.cmbPhai.Size = new System.Drawing.Size(121, 24);
+            this.cmbPhai.TabIndex = 7;
+            // 
+            // txtTEN
+            // 
+            this.txtTEN.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "TENNV", true));
+            this.txtTEN.Location = new System.Drawing.Point(300, 43);
+            this.txtTEN.Name = "txtTEN";
+            this.txtTEN.Size = new System.Drawing.Size(100, 23);
+            this.txtTEN.TabIndex = 5;
+            // 
+            // txtHO
+            // 
+            this.txtHO.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "HONV", true));
+            this.txtHO.Location = new System.Drawing.Point(93, 43);
+            this.txtHO.Name = "txtHO";
+            this.txtHO.Size = new System.Drawing.Size(100, 23);
+            this.txtHO.TabIndex = 3;
+            // 
+            // bdsCTPM
+            // 
+            this.bdsCTPM.DataMember = "FK__CT_PHIEUM__MANVN__440B1D61";
+            this.bdsCTPM.DataSource = this.bdsNV;
+            // 
+            // bdsPM
+            // 
+            this.bdsPM.DataMember = "FK__PHIEUMUON__MANV__3F466844";
+            this.bdsPM.DataSource = this.bdsNV;
+            // 
+            // PHIEUMUONTableAdapter
+            // 
+            this.PHIEUMUONTableAdapter.ClearBeforeFill = true;
+            // 
+            // nHANVIENBindingSource
+            // 
+            this.nHANVIENBindingSource.DataMember = "NHANVIEN";
+            this.nHANVIENBindingSource.DataSource = this.dS;
             // 
             // frmNhanvien
             // 
@@ -558,7 +536,6 @@
         private System.Windows.Forms.ComboBox cmbPhai;
         private System.Windows.Forms.TextBox txtTEN;
         private System.Windows.Forms.TextBox txtHO;
-        private System.Windows.Forms.TextBox txtMANV;
         private DSTableAdapters.CT_PHIEUMUONTableAdapter CT_PHIEUMUONTableAdapter;
         private System.Windows.Forms.BindingSource bdsCTPM;
         private System.Windows.Forms.BindingSource bdsPM;

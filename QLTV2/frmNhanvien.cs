@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraRichEdit.Import.Html;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -124,9 +125,9 @@ namespace QLTV2
             gcNV.Enabled = false;
             bdsNV.AddNew();
 
-            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = false;
-            btnGhi.Enabled = btnPhuchoi.Enabled = btnReload.Enabled = true;
-            txtMANV.Focus();
+            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = false;
+            btnGhi.Enabled = btnReload.Enabled = true;
+            txtHO.Focus();
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -166,13 +167,13 @@ namespace QLTV2
                 return;
             }
 
-            string manv = txtMANV.Text.Trim();
-            if (bdsNV.Cast<DataRowView>().Any(r => r != bdsNV.Current && r["MANV"].ToString() == manv))
-            {
-                MessageBox.Show("Mã nhân viên đã tồn tại. Vui lòng nhập mã khác.");
-                txtMANV.Focus();
-                return;
-            }
+            //string manv = txtMANV.Text.Trim();
+            //if (bdsNV.Cast<DataRowView>().Any(r => r != bdsNV.Current && r["MANV"].ToString() == manv))
+            //{
+            //    MessageBox.Show("Mã nhân viên đã tồn tại. Vui lòng nhập mã khác.");
+            //    txtMANV.Focus();
+            //    return;
+            //}
 
             try
             {
@@ -264,6 +265,10 @@ namespace QLTV2
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (bdsNV.Current != null && bdsNV.IsBindingSuspended == false)
+            {
+                bdsNV.CancelEdit();
+            }
             // Xóa bảng con trước bảng cha
             dS.CT_PHIEUMUON.Clear();
             dS.SACH.Clear();
@@ -291,6 +296,10 @@ namespace QLTV2
             NHANVIENTableAdapter.Fill(dS.NHANVIEN);
             PHIEUMUONTableAdapter.Fill(dS.PHIEUMUON);
             CT_PHIEUMUONTableAdapter.Fill(dS.CT_PHIEUMUON);
+
+            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = true;
+            GroupBox1.Enabled = false;
+            gcNV.Enabled = true;
         }
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {

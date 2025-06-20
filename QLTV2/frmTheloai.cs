@@ -1,4 +1,5 @@
-﻿using QLTV2.DSTableAdapters;
+﻿using DevExpress.XtraRichEdit.Import.Html;
+using QLTV2.DSTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,7 +41,7 @@ namespace QLTV2
             DataRow row = currentRowView.Row;
             object[] values = (object[])row.ItemArray.Clone();
 
-            int realIndex = dS.DAUSACH.Rows.IndexOf(row); // vị trí trong danh sách gốc
+            int realIndex = dS.THELOAI.Rows.IndexOf(row); // vị trí trong danh sách gốc
 
             undoStack.Push(new UndoItem
             {
@@ -53,7 +54,6 @@ namespace QLTV2
 
         private void frmTheloai_Load(object sender, EventArgs e)
         {
-            
             try
             {
                 this.THELOAITableAdapter.Fill(dS.THELOAI);
@@ -87,8 +87,8 @@ namespace QLTV2
             gcTL.Enabled = false;
             bdsTL.AddNew();
 
-            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = false;
-            btnGhi.Enabled = btnPhuchoi.Enabled = btnReload.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = false;
+            btnGhi.Enabled = btnReload.Enabled = true;
             txtMATL.Focus();
         }
 
@@ -165,6 +165,7 @@ namespace QLTV2
         }
         private void btnPhuchoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            dS.EnforceConstraints = false;
             if (undoStack.Count > 0)
             {
                 var item = undoStack.Pop();
@@ -202,8 +203,10 @@ namespace QLTV2
                     bdsTL.Position = isFilterActive ? item.Index : item.RealIndex; // đưa con trỏ về đúng dòng đã sửa
 
                     DataRow current = ((DataRowView)bdsTL.Current).Row;
+
                     for (int i = 0; i < current.Table.Columns.Count; i++)
                     {
+                        MessageBox.Show(item.ItemArray[i].ToString());
                         if (!current.Table.Columns[i].ReadOnly)
                         {
                             current[i] = item.ItemArray[i];
@@ -223,6 +226,11 @@ namespace QLTV2
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (bdsTL.Current != null && bdsTL.IsBindingSuspended == false)
+            {
+                bdsTL.CancelEdit();
+            }
+
             dS.DAUSACH.Clear();
             dS.THELOAI.Clear();
             dS.NGANTU.Clear();
@@ -236,6 +244,9 @@ namespace QLTV2
 
             DAUSACHTableAdapter.Fill(dS.DAUSACH);
 
+            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = true;
+            GroupBox1.Enabled = false;
+            gcTL.Enabled = true;
         }
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {

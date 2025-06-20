@@ -56,6 +56,10 @@
             this.tableAdapterManager = new QLTV2.DSTableAdapters.TableAdapterManager();
             this.TACGIA_SACHTableAdapter = new QLTV2.DSTableAdapters.TACGIA_SACHTableAdapter();
             this.gcTG = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupBox1 = new DevExpress.XtraEditors.GroupControl();
             this.btnFind = new System.Windows.Forms.Button();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
@@ -67,10 +71,6 @@
             this.gcTG_SACH = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             hOTENTGLabel = new System.Windows.Forms.Label();
             dIACHITGLabel = new System.Windows.Forms.Label();
             dIENTHOAITGLabel = new System.Windows.Forms.Label();
@@ -333,6 +333,35 @@
             this.gcTG.Size = new System.Drawing.Size(1062, 220);
             this.gcTG.TabIndex = 19;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "MATACGIA";
+            this.dataGridViewTextBoxColumn1.HeaderText = "MATACGIA";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "HOTENTG";
+            this.dataGridViewTextBoxColumn5.HeaderText = "HOTENTG";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "DIACHITG";
+            this.dataGridViewTextBoxColumn6.HeaderText = "DIACHITG";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "DIENTHOAITG";
+            this.dataGridViewTextBoxColumn7.HeaderText = "DIENTHOAITG";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
             // GroupBox1
             // 
             this.GroupBox1.Controls.Add(this.btnFind);
@@ -439,35 +468,6 @@
             this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MATACGIA";
-            this.dataGridViewTextBoxColumn1.HeaderText = "MATACGIA";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "HOTENTG";
-            this.dataGridViewTextBoxColumn5.HeaderText = "HOTENTG";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "DIACHITG";
-            this.dataGridViewTextBoxColumn6.HeaderText = "DIACHITG";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "DIENTHOAITG";
-            this.dataGridViewTextBoxColumn7.HeaderText = "DIENTHOAITG";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             // 
             // frmTacgia
             // 

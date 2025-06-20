@@ -1,4 +1,5 @@
-﻿using QLTV2.DSTableAdapters;
+﻿using DevExpress.XtraRichEdit.Import.Html;
+using QLTV2.DSTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -109,8 +110,8 @@ namespace QLTV2
             gcDAUSACH.Enabled = false;
             bdsDS.AddNew();
 
-            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = false;
-            btnGhi.Enabled = btnPhuchoi.Enabled = btnReload.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = false;
+            btnGhi.Enabled = btnReload.Enabled = true;
             txtISBN.Focus();
         }
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -281,6 +282,16 @@ namespace QLTV2
         }
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (bdsDS.Current != null && bdsDS.IsBindingSuspended == false)
+            {
+                bdsDS.CancelEdit();
+            }
+
+            if (bdsSach.Current != null && bdsSach.IsBindingSuspended == false)
+            {
+                bdsSach.CancelEdit();
+            }
+
             dS.SACH.Clear();
             dS.DAUSACH.Clear();
             dS.THELOAI.Clear();
@@ -298,6 +309,8 @@ namespace QLTV2
             SACHTableAdapter.Fill(dS.SACH);
 
             btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = true;
+            GroupBox1.Enabled = GroupBox2.Enabled = false;
+            gcDAUSACH.Enabled = gcSACH.Enabled = true;
         }
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {

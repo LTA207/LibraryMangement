@@ -1,4 +1,5 @@
-﻿using QLTV2.DSTableAdapters;
+﻿using DevExpress.XtraRichEdit.Import.Html;
+using QLTV2.DSTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -93,8 +94,8 @@ namespace QLTV2
 
             cmbPhai.SelectedValue = true;
 
-            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = false;
-            btnGhi.Enabled = btnPhuchoi.Enabled = btnReload.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = false;
+            btnGhi.Enabled = btnReload.Enabled = true;
             txtHODG.Focus();
         }
 
@@ -127,6 +128,13 @@ namespace QLTV2
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (dtpHETHAN.Value.Date < dtpLAMTHE.Value.Date)
+            {
+                MessageBox.Show("Ngày hết hạn thẻ phải sau ngày làm thẻ.");
+                dtpHETHAN.Focus();
+                return;
+            }
+
             try
             {
                 bdsDG.EndEdit();
@@ -218,6 +226,11 @@ namespace QLTV2
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (bdsDG.Current != null && bdsDG.IsBindingSuspended == false)
+            {
+                bdsDG.CancelEdit();
+            }
+
             dS.PHIEUMUON.Clear();
             dS.NHANVIEN.Clear();
             dS.DOCGIA.Clear();
@@ -225,6 +238,10 @@ namespace QLTV2
             DOCGIATableAdapter.Fill(dS.DOCGIA);
             NHANVIENTableAdapter.Fill(dS.NHANVIEN);
             PHIEUMUONTableAdapter.Fill(dS.PHIEUMUON);
+
+            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = true;
+            GroupBox1.Enabled = false;
+            gcDG.Enabled = true;
         }
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -233,6 +250,13 @@ namespace QLTV2
 
         private void gcDOCGIA_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            if (dtpHETHAN.Value.Date < dtpLAMTHE.Value.Date)
+            {
+                MessageBox.Show("Ngày hết hạn thẻ phải sau ngày làm thẻ.");
+                dtpHETHAN.Focus();
+                return;
+            }
+
             try
             {
                 bdsDG.EndEdit();
