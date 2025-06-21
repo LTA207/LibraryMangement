@@ -54,13 +54,6 @@
             this.tableAdapterManager = new QLTV2.DSTableAdapters.TableAdapterManager();
             this.CT_PHIEUMUONTableAdapter = new QLTV2.DSTableAdapters.CT_PHIEUMUONTableAdapter();
             this.gcNV = new System.Windows.Forms.DataGridView();
-            this.gcc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbColPhai = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupBox1 = new DevExpress.XtraEditors.GroupControl();
             this.btnFindNV = new System.Windows.Forms.Button();
             this.txtTimkiem = new System.Windows.Forms.TextBox();
@@ -74,6 +67,13 @@
             this.bdsPM = new System.Windows.Forms.BindingSource(this.components);
             this.PHIEUMUONTableAdapter = new QLTV2.DSTableAdapters.PHIEUMUONTableAdapter();
             this.nHANVIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gcc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHONV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTENNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbColPhai = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             hONVLabel = new System.Windows.Forms.Label();
             tENNVLabel = new System.Windows.Forms.Label();
             gIOITINHLabel = new System.Windows.Forms.Label();
@@ -305,8 +305,8 @@
             this.gcNV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gcNV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gcc,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
+            this.colHONV,
+            this.colTENNV,
             this.cmbColPhai,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
@@ -319,58 +319,6 @@
             this.gcNV.RowTemplate.Height = 24;
             this.gcNV.Size = new System.Drawing.Size(1130, 263);
             this.gcNV.TabIndex = 9;
-            // 
-            // gcc
-            // 
-            this.gcc.DataPropertyName = "MANV";
-            this.gcc.HeaderText = "MANV";
-            this.gcc.MinimumWidth = 6;
-            this.gcc.Name = "gcc";
-            this.gcc.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "HONV";
-            this.dataGridViewTextBoxColumn2.HeaderText = "HONV";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "TENNV";
-            this.dataGridViewTextBoxColumn3.HeaderText = "TENNV";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // cmbColPhai
-            // 
-            this.cmbColPhai.DataPropertyName = "GIOITINH";
-            this.cmbColPhai.HeaderText = "GIOITINH";
-            this.cmbColPhai.MinimumWidth = 6;
-            this.cmbColPhai.Name = "cmbColPhai";
-            this.cmbColPhai.ReadOnly = true;
-            this.cmbColPhai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "DIACHI";
-            this.dataGridViewTextBoxColumn4.HeaderText = "DIACHI";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "DIENTHOAI";
-            this.dataGridViewTextBoxColumn5.HeaderText = "DIENTHOAI";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "EMAIL";
-            this.dataGridViewTextBoxColumn6.HeaderText = "EMAIL";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
             // GroupBox1
             // 
@@ -480,6 +428,58 @@
             this.nHANVIENBindingSource.DataMember = "NHANVIEN";
             this.nHANVIENBindingSource.DataSource = this.dS;
             // 
+            // gcc
+            // 
+            this.gcc.DataPropertyName = "MANV";
+            this.gcc.HeaderText = "MANV";
+            this.gcc.MinimumWidth = 6;
+            this.gcc.Name = "gcc";
+            this.gcc.ReadOnly = true;
+            // 
+            // colHONV
+            // 
+            this.colHONV.DataPropertyName = "HONV";
+            this.colHONV.HeaderText = "HONV";
+            this.colHONV.MinimumWidth = 6;
+            this.colHONV.Name = "colHONV";
+            // 
+            // colTENNV
+            // 
+            this.colTENNV.DataPropertyName = "TENNV";
+            this.colTENNV.HeaderText = "TENNV";
+            this.colTENNV.MinimumWidth = 6;
+            this.colTENNV.Name = "colTENNV";
+            // 
+            // cmbColPhai
+            // 
+            this.cmbColPhai.DataPropertyName = "GIOITINH";
+            this.cmbColPhai.HeaderText = "GIOITINH";
+            this.cmbColPhai.MinimumWidth = 6;
+            this.cmbColPhai.Name = "cmbColPhai";
+            this.cmbColPhai.ReadOnly = true;
+            this.cmbColPhai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "DIACHI";
+            this.dataGridViewTextBoxColumn4.HeaderText = "DIACHI";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "DIENTHOAI";
+            this.dataGridViewTextBoxColumn5.HeaderText = "DIENTHOAI";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "EMAIL";
+            this.dataGridViewTextBoxColumn6.HeaderText = "EMAIL";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
             // frmNhanvien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -544,8 +544,8 @@
         private System.Windows.Forms.Button btnFindNV;
         private System.Windows.Forms.TextBox txtTimkiem;
         private System.Windows.Forms.DataGridViewTextBoxColumn gcc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colHONV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTENNV;
         private System.Windows.Forms.DataGridViewComboBoxColumn cmbColPhai;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;

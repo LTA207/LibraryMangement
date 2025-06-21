@@ -69,6 +69,10 @@ namespace QLTV2
 
             this.gcTG.CellValueChanged += gcTG_CellValueChanged;
             this.gcTG.CellBeginEdit += gcTG_CellBeginEdit;
+            txtHoten.KeyPress += OnlyAllowLetters_KeyPress;
+            this.gcTG.EditingControlShowing += gcTG_EditingControlShowing;
+            this.gcTG.CellValidating += gcTG_CellValidating;
+
         }
 
         private void tACGIABindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
@@ -96,11 +100,11 @@ namespace QLTV2
         {
             if (bdsTG_SACH.Count > 0)
             {
-                MessageBox.Show("Nhân viên đã lập phiếu nên không thể xóa.");
+                MessageBox.Show("Tác giả đã có sách nên không thể xóa.");
                 return;
             }
 
-            if (MessageBox.Show("Bạn có thật sự muốn xóa nhân viên này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có thật sự muốn xóa tác giả này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
                 {
@@ -118,7 +122,7 @@ namespace QLTV2
         {
             if (string.IsNullOrWhiteSpace(txtHoten.Text))
             {
-                MessageBox.Show("Họ nhân viên không được thiếu.");
+                MessageBox.Show("Họ tác giả không được thiếu.");
                 txtHoten.Focus();
                 return;
             }
@@ -284,6 +288,73 @@ namespace QLTV2
             {
                 MessageBox.Show("Không tìm thấy nhân viên nào phù hợp.");
                 bdsTG.Filter = "";
+            }
+        }
+        private void OnlyAllowLetters_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            // Cho phép phím điều khiển như Backspace
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Chặn nếu không phải chữ hoặc khoảng trắng
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Chặn khoảng trắng đầu tiên
+            if (textBox.SelectionStart == 0 && char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Chặn nhiều khoảng trắng liên tiếp
+            if (char.IsWhiteSpace(e.KeyChar))
+            {
+                int pos = textBox.SelectionStart;
+                if (pos > 0 && textBox.Text[pos - 1] == ' ')
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+        }
+        private void gcTG_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (gcTG.CurrentCell.ColumnIndex == colHOTENTG.Index)
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress -= OnlyAllowLetters_KeyPress;
+                    tb.KeyPress += OnlyAllowLetters_KeyPress;
+                }
+            }
+            else
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress -= OnlyAllowLetters_KeyPress;
+                }
+            }
+        }
+        private void gcTG_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            // Kiểm tra cột Họ hoặc Tên
+            if (gcTG.Columns[e.ColumnIndex].Name == "colHOTENTG")
+            {
+                string newValue = e.FormattedValue?.ToString().Trim();
+
+                if (string.IsNullOrWhiteSpace(newValue))
+                {
+                    MessageBox.Show($"{gcTG.Columns[e.ColumnIndex].HeaderText} không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                }
             }
         }
     }

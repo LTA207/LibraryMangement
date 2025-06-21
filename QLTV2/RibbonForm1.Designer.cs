@@ -60,7 +60,7 @@
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rbpReport = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -105,7 +105,7 @@
             this.rbpQLNS,
             this.rbpMVTS,
             this.rbpSystem,
-            this.ribbonPage2,
+            this.rbpReport,
             this.ribbonPage1});
             this.ribbon.Size = new System.Drawing.Size(1340, 193);
             this.ribbon.StatusBar = this.ribbonStatusBar;
@@ -315,15 +315,15 @@
             this.ribbonPageGroup14.Name = "ribbonPageGroup14";
             this.ribbonPageGroup14.Text = "ribbonPageGroup14";
             // 
-            // ribbonPage2
+            // rbpReport
             // 
-            this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rbpReport.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup10,
             this.ribbonPageGroup11,
             this.ribbonPageGroup12,
             this.ribbonPageGroup13});
-            this.ribbonPage2.Name = "ribbonPage2";
-            this.ribbonPage2.Text = "Báo cáo";
+            this.rbpReport.Name = "rbpReport";
+            this.rbpReport.Text = "Báo cáo";
             // 
             // ribbonPageGroup10
             // 
@@ -430,7 +430,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem btnReportDSDG;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rbpReport;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
         private DevExpress.XtraBars.BarButtonItem btnReportDMDS;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup11;

@@ -111,8 +111,12 @@ namespace QLTV2
             
             this.gcNV.CellValueChanged += gcNV_CellValueChanged;
             this.gcNV.CellBeginEdit += gcNV_CellBeginEdit;
+            txtHO.KeyPress += OnlyAllowLetters_KeyPress;
+            txtTEN.KeyPress += OnlyAllowLetters_KeyPress;
             SetupGenderComboBox();
             SetupGenderComboBoxColumn();
+            this.gcNV.EditingControlShowing += gcNV_EditingControlShowing;
+            this.gcNV.CellValidating += gcNV_CellValidating;
         }
 
 
@@ -370,6 +374,73 @@ namespace QLTV2
             cmbColPhai.DataSource = genderList;
             cmbColPhai.DisplayMember = "Value";
             cmbColPhai.ValueMember = "Key";
+        }
+        private void OnlyAllowLetters_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            // Cho phép phím điều khiển như Backspace
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Chặn nếu không phải chữ hoặc khoảng trắng
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Chặn khoảng trắng đầu tiên
+            if (textBox.SelectionStart == 0 && char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Chặn nhiều khoảng trắng liên tiếp
+            if (char.IsWhiteSpace(e.KeyChar))
+            {
+                int pos = textBox.SelectionStart;
+                if (pos > 0 && textBox.Text[pos - 1] == ' ')
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+        }
+        private void gcNV_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (gcNV.CurrentCell.ColumnIndex == colHONV.Index || gcNV.CurrentCell.ColumnIndex == colTENNV.Index)
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress -= OnlyAllowLetters_KeyPress; 
+                    tb.KeyPress += OnlyAllowLetters_KeyPress;
+                }
+            }
+            else
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress -= OnlyAllowLetters_KeyPress;
+                }
+            }
+        }
+        private void gcNV_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            // Kiểm tra cột Họ hoặc Tên
+            if (gcNV.Columns[e.ColumnIndex].Name == "colHONV" || gcNV.Columns[e.ColumnIndex].Name == "colTENNV")
+            {
+                string newValue = e.FormattedValue?.ToString().Trim();
+
+                if (string.IsNullOrWhiteSpace(newValue))
+                {
+                    MessageBox.Show($"{gcNV.Columns[e.ColumnIndex].HeaderText} không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                }
+            }
         }
 
     }

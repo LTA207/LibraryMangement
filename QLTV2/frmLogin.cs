@@ -32,9 +32,13 @@ namespace QLTV2
             {
                 //try
                 //{
-                    // Lấy ORIGINAL_LOGIN()
-                    string sql = "SELECT ORIGINAL_LOGIN()";
-                    Program.myReader = Program.ExecSqlDataReader(sql);
+                // Lấy ORIGINAL_LOGIN()
+                string sql = "SELECT dp.name AS DatabaseUserName " +
+                             "FROM sys.server_principals sp " +
+                             "JOIN sys.syslogins sl ON sp.sid = sl.sid " +
+                             "JOIN sys.database_principals dp ON dp.sid = sp.sid " +
+                             "WHERE sp.name = ORIGINAL_LOGIN();";
+                Program.myReader = Program.ExecSqlDataReader(sql);
 
                     string originalLogin = "";
                     if (Program.myReader != null && Program.myReader.Read())

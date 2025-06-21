@@ -74,6 +74,10 @@ namespace QLTV2
             SetupHoatDongComboBox();
             SetupColunmPhai();
             SetupColunmHD();
+            txtHODG.KeyPress += OnlyAllowLetters_KeyPress;
+            txtTENDG.KeyPress += OnlyAllowLetters_KeyPress;
+            this.gcDG.EditingControlShowing += gcDG_EditingControlShowing;
+            this.gcDG.CellValidating += gcDG_CellValidating;
         }
 
         private void gcDOCGIA_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -112,6 +116,12 @@ namespace QLTV2
                 return;
             }
 
+            if(bdsPM.Count > 0)
+            {
+                MessageBox.Show("Độc giả đã lập phiếu nên không thể xóa.");
+                return;
+            }
+
             if (MessageBox.Show("Bạn có thật sự muốn xóa độc giả này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
@@ -132,6 +142,19 @@ namespace QLTV2
             {
                 MessageBox.Show("Ngày hết hạn thẻ phải sau ngày làm thẻ.");
                 dtpHETHAN.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtHODG.Text))
+            {
+                MessageBox.Show("Họ độc giả không được thiếu.");
+                txtHODG.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtTENDG.Text))
+            {
+                MessageBox.Show("Họ nhân viên không được thiếu.");
+                txtTENDG.Focus();
                 return;
             }
 
@@ -359,5 +382,74 @@ namespace QLTV2
             cmbColHD.DisplayMember = "Value";
             cmbColHD.ValueMember = "Key";
         }
+
+        private void OnlyAllowLetters_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            // Cho phép phím điều khiển như Backspace
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Chặn nếu không phải chữ hoặc khoảng trắng
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Chặn khoảng trắng đầu tiên
+            if (textBox.SelectionStart == 0 && char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Chặn nhiều khoảng trắng liên tiếp
+            if (char.IsWhiteSpace(e.KeyChar))
+            {
+                int pos = textBox.SelectionStart;
+                if (pos > 0 && textBox.Text[pos - 1] == ' ')
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+        }
+        private void gcDG_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (gcDG.CurrentCell.ColumnIndex == colHODG.Index || gcDG.CurrentCell.ColumnIndex == colTENDG.Index)
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress -= OnlyAllowLetters_KeyPress;
+                    tb.KeyPress += OnlyAllowLetters_KeyPress;
+                }
+            }
+            else
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress -= OnlyAllowLetters_KeyPress;
+                }
+            }
+        }
+        private void gcDG_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            // Kiểm tra cột Họ hoặc Tên
+            if (gcDG.Columns[e.ColumnIndex].Name == "colHODG" || gcDG.Columns[e.ColumnIndex].Name == "colTENDG")
+            {
+                string newValue = e.FormattedValue?.ToString().Trim();
+
+                if (string.IsNullOrWhiteSpace(newValue))
+                {
+                    MessageBox.Show($"{gcDG.Columns[e.ColumnIndex].HeaderText} không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                }
+            }
+        }
+
     }
 }

@@ -26,6 +26,7 @@ namespace QLTV2
                 rbpMVTS.Visible = false;
                 rbpQLNS.Visible = false;
                 rbpSystem.Visible = false;
+                rbpReport.Visible = false;
             }
         }
         private Form CheckExists(Type ftype)
