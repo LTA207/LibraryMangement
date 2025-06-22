@@ -46,6 +46,7 @@
             this.btnTopDS = new DevExpress.XtraBars.BarButtonItem();
             this.btnDGQuaHan = new DevExpress.XtraBars.BarButtonItem();
             this.btnDoiPass = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTraCuu = new DevExpress.XtraBars.BarButtonItem();
             this.rbpQLTV = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.Sách = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -65,6 +66,8 @@
             this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbpTraCuu = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup15 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
@@ -94,10 +97,11 @@
             this.btnReportDMDS,
             this.btnTopDS,
             this.btnDGQuaHan,
-            this.btnDoiPass});
+            this.btnDoiPass,
+            this.btnTraCuu});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(5);
-            this.ribbon.MaxItemId = 18;
+            this.ribbon.MaxItemId = 19;
             this.ribbon.Name = "ribbon";
             this.ribbon.OptionsMenuMinWidth = 589;
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -106,6 +110,7 @@
             this.rbpMVTS,
             this.rbpSystem,
             this.rbpReport,
+            this.rbpTraCuu,
             this.ribbonPage1});
             this.ribbon.Size = new System.Drawing.Size(1340, 193);
             this.ribbon.StatusBar = this.ribbonStatusBar;
@@ -220,6 +225,13 @@
             this.btnDoiPass.Id = 17;
             this.btnDoiPass.Name = "btnDoiPass";
             this.btnDoiPass.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDoiPass_ItemClick);
+            // 
+            // btnTraCuu
+            // 
+            this.btnTraCuu.Caption = "Tra cứu sách";
+            this.btnTraCuu.Id = 18;
+            this.btnTraCuu.Name = "btnTraCuu";
+            this.btnTraCuu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTraCuu_ItemClick);
             // 
             // rbpQLTV
             // 
@@ -349,6 +361,19 @@
             this.ribbonPageGroup13.Name = "ribbonPageGroup13";
             this.ribbonPageGroup13.Text = "ribbonPageGroup13";
             // 
+            // rbpTraCuu
+            // 
+            this.rbpTraCuu.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup15});
+            this.rbpTraCuu.Name = "rbpTraCuu";
+            this.rbpTraCuu.Text = "Tra cứu";
+            // 
+            // ribbonPageGroup15
+            // 
+            this.ribbonPageGroup15.ItemLinks.Add(this.btnTraCuu);
+            this.ribbonPageGroup15.Name = "ribbonPageGroup15";
+            this.ribbonPageGroup15.Text = "ribbonPageGroup15";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -440,5 +465,8 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup13;
         private DevExpress.XtraBars.BarButtonItem btnDoiPass;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
+        private DevExpress.XtraBars.BarButtonItem btnTraCuu;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rbpTraCuu;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup15;
     }
 }

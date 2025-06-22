@@ -177,7 +177,7 @@ namespace QLTV2
 
                         cmd.ExecuteNonQuery();
                     }
-
+                    SqlConnection.ClearAllPools();
                     MessageBox.Show("Tạo tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Xóa dữ liệu nhập sau khi thành công

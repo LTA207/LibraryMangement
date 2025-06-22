@@ -161,7 +161,8 @@ namespace QLTV2
             string rolePrefix = cmbRole.SelectedValue.ToString(); // "dg" hoặc "ad"
             string userCode = cmbUser.SelectedValue.ToString();   // MADG hoặc MANV
 
-            string loginName = $"{rolePrefix}{userCode}"; // ghép thành login SQL Server
+            string userName = $"{rolePrefix}{userCode}";
+            string loginName = LayLoginNameTuUser(userName);
 
             // 6. Tạo câu lệnh đổi mật khẩu (ALTER LOGIN)
             string sql = $"ALTER LOGIN [{loginName}] WITH PASSWORD = '{newPass}'";
@@ -181,6 +182,31 @@ namespace QLTV2
             {
                 MessageBox.Show("Lỗi khi đổi mật khẩu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private string LayLoginNameTuUser(string userName)
+        {
+            string loginName = null;
+            string query = @"
+        USE SQLQLTV;
+        SELECT sp.name AS LoginName
+        FROM sys.database_principals dp
+        JOIN sys.server_principals sp ON dp.sid = sp.sid
+        WHERE dp.name = @UserName;
+    ";
+
+            using (SqlConnection conn = new SqlConnection(Program.connstr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserName", userName);
+                    var result = cmd.ExecuteScalar();
+                    if (result != null)
+                        loginName = result.ToString();
+                }
+            }
+
+            return loginName;
         }
 
     }

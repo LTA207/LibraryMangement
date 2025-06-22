@@ -265,6 +265,8 @@
             // 
             // gcBackup
             // 
+            this.gcBackup.AllowUserToAddRows = false;
+            this.gcBackup.AllowUserToDeleteRows = false;
             this.gcBackup.AutoGenerateColumns = false;
             this.gcBackup.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gcBackup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

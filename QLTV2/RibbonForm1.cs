@@ -214,5 +214,17 @@ namespace QLTV2
                 f.Show();
             }
         }
+
+        private void btnTraCuu_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmTraCuu));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmTraCuu f = new frmTraCuu();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }
