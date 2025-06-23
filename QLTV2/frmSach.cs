@@ -28,18 +28,26 @@ namespace QLTV2
         }
         private void frmSach_Load(object sender, EventArgs e)
         {
-            try
+            if(undoStack.Count == 0)
             {
-                this.THELOAITableAdapter.Fill(dS.THELOAI);
-                this.NGANTUTableAdapter.Fill(dS.NGANTU);
-                this.NGONNGUTableAdapter.Fill(dS.NGONNGU);
-                this.DAUSACHTableAdapter.Fill(dS.DAUSACH);
-                this.SACHTableAdapter.Fill(dS.SACH);
+                btnPhuchoi.Enabled = false;
             }
-            catch (ConstraintException ex)
+            else
             {
-                MessageBox.Show("Lỗi ràng buộc dữ liệu: " + ex.Message);
+                btnPhuchoi.Enabled = true;
             }
+                try
+                {
+                    this.THELOAITableAdapter.Fill(dS.THELOAI);
+                    this.NGANTUTableAdapter.Fill(dS.NGANTU);
+                    this.NGONNGUTableAdapter.Fill(dS.NGONNGU);
+                    this.DAUSACHTableAdapter.Fill(dS.DAUSACH);
+                    this.SACHTableAdapter.Fill(dS.SACH);
+                }
+                catch (ConstraintException ex)
+                {
+                    MessageBox.Show("Lỗi ràng buộc dữ liệu: " + ex.Message);
+                }
 
             if (bdsDS.Count == 0)
             {
@@ -57,6 +65,8 @@ namespace QLTV2
 
             SetupColunmTinhTrang();
             SetupColunmChoMuon();
+            GroupBox1.Enabled = GroupBox2.Enabled = false;
+            GroupBox3.Enabled = true;
         }
 
         private void SaveCurrentRowState(string action, string table)
@@ -107,10 +117,10 @@ namespace QLTV2
             undoStack.Push(new UndoItem { Action = "Add", TableName = "DAUSACH" });
             vitri = bdsDS.Position;
             GroupBox1.Enabled = true;
-            gcDAUSACH.Enabled = false;
+            gcDAUSACH.Enabled = gcSACH.Enabled = false;
             bdsDS.AddNew();
 
-            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = false;
+            btnThem.Enabled = btnXoa.Enabled = GroupBox3.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = gcSACH.Enabled = contextMenuStrip1.Enabled = false;
             btnGhi.Enabled = btnReload.Enabled = true;
             txtISBN.Focus();
         }
@@ -186,9 +196,17 @@ namespace QLTV2
                 return;
             }
 
-            btnGhi.Enabled = btnPhuchoi.Enabled = GroupBox1.Enabled = true;
-            btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = true;
-            gcDAUSACH.Enabled = true;
+            btnGhi.Enabled = btnXoa.Enabled = btnThem.Enabled = GroupBox3.Enabled = contextMenuStrip1.Enabled = true;
+            if(undoStack.Count != 0)
+            {
+                btnPhuchoi.Enabled = true;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;
+            gcDAUSACH.Enabled = gcSACH.Enabled = true;
         }
         private void btnPhuchoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -279,6 +297,15 @@ namespace QLTV2
             {
                 MessageBox.Show("Không có thao tác nào để phục hồi.");
             }
+            if(undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+
         }
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -308,9 +335,18 @@ namespace QLTV2
 
             SACHTableAdapter.Fill(dS.SACH);
 
-            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = btnThoat.Enabled = GroupBox3.Enabled = contextMenuStrip1.Enabled = true;
             GroupBox1.Enabled = GroupBox2.Enabled = false;
             gcDAUSACH.Enabled = gcSACH.Enabled = true;
+
+            if(undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
         }
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -358,8 +394,9 @@ namespace QLTV2
             DataRowView newRow = (DataRowView)bdsSach.AddNew();
             newRow["CHOMUON"] = false;
 
-            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = false;
-            btnGhi.Enabled = btnPhuchoi.Enabled = btnReload.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = contextMenuStrip1.Enabled = btnThoat.Enabled = btnGhi.Enabled = contextMenuStrip1.Enabled = btnPhuchoi.Enabled =false;
+            btnReload.Enabled = true;
+            gcDAUSACH.Enabled = gcSACH.Enabled = false;
             txtMAS.Focus();
         }
 
@@ -407,10 +444,18 @@ namespace QLTV2
                 }
                 return;
             }
-
-            btnGhi.Enabled = btnPhuchoi.Enabled = GroupBox1.Enabled = true;
-            btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = true;
-            gcDAUSACH.Enabled = true;
+            if(undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+            gcDAUSACH.Enabled = gcSACH.Enabled = true;
+            GroupBox1.Enabled = GroupBox2.Enabled = false;
+            GroupBox3.Enabled = true;
+            btnGhi.Enabled = btnThem.Enabled = btnXoa.Enabled = btnThoat.Enabled = contextMenuStrip1.Enabled = true;
         }
 
         private void btnTimkiem_Click(object sender, EventArgs e)

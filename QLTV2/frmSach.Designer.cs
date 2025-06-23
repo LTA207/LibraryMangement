@@ -72,8 +72,6 @@
             this.tableAdapterManager = new QLTV2.DSTableAdapters.TableAdapterManager();
             this.SACHTableAdapter = new QLTV2.DSTableAdapters.SACHTableAdapter();
             this.GroupBox1 = new DevExpress.XtraEditors.GroupControl();
-            this.btnTimkiem = new System.Windows.Forms.Button();
-            this.txtTimkiem = new DevExpress.XtraEditors.TextEdit();
             this.cmbMATL = new System.Windows.Forms.ComboBox();
             this.cmbMANN = new System.Windows.Forms.ComboBox();
             this.txtNhaXB = new System.Windows.Forms.TextBox();
@@ -118,6 +116,9 @@
             this.cmbTinhTrang = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.cmbChoMuon = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.GroupBox3 = new DevExpress.XtraEditors.GroupControl();
+            this.btnTimkiem = new System.Windows.Forms.Button();
+            this.txtTimkiem = new DevExpress.XtraEditors.TextEdit();
             iSBNLabel = new System.Windows.Forms.Label();
             tensachLabel = new System.Windows.Forms.Label();
             khosachLabel = new System.Windows.Forms.Label();
@@ -141,7 +142,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GroupBox1)).BeginInit();
             this.GroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTimkiem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GroupBox2)).BeginInit();
             this.GroupBox2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -150,6 +150,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.sACHBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sACHBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSACH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GroupBox3)).BeginInit();
+            this.GroupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTimkiem.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // iSBNLabel
@@ -191,7 +194,7 @@
             // hinhAnhPathLabel
             // 
             hinhAnhPathLabel.AutoSize = true;
-            hinhAnhPathLabel.Location = new System.Drawing.Point(16, 149);
+            hinhAnhPathLabel.Location = new System.Drawing.Point(984, 53);
             hinhAnhPathLabel.Name = "hinhAnhPathLabel";
             hinhAnhPathLabel.Size = new System.Drawing.Size(92, 16);
             hinhAnhPathLabel.TabIndex = 8;
@@ -227,7 +230,7 @@
             // giaLabel
             // 
             giaLabel.AutoSize = true;
-            giaLabel.Location = new System.Drawing.Point(1188, 50);
+            giaLabel.Location = new System.Drawing.Point(1139, 97);
             giaLabel.Name = "giaLabel";
             giaLabel.Size = new System.Drawing.Size(30, 16);
             giaLabel.TabIndex = 16;
@@ -236,7 +239,7 @@
             // nHAXBLabel
             // 
             nHAXBLabel.AutoSize = true;
-            nHAXBLabel.Location = new System.Drawing.Point(971, 54);
+            nHAXBLabel.Location = new System.Drawing.Point(923, 98);
             nHAXBLabel.Name = "nHAXBLabel";
             nHAXBLabel.Size = new System.Drawing.Size(51, 16);
             nHAXBLabel.TabIndex = 18;
@@ -254,7 +257,7 @@
             // mASACHLabel
             // 
             mASACHLabel.AutoSize = true;
-            mASACHLabel.Location = new System.Drawing.Point(9, 51);
+            mASACHLabel.Location = new System.Drawing.Point(28, 73);
             mASACHLabel.Name = "mASACHLabel";
             mASACHLabel.Size = new System.Drawing.Size(62, 16);
             mASACHLabel.TabIndex = 0;
@@ -263,7 +266,7 @@
             // tINHTRANGLabel
             // 
             tINHTRANGLabel.AutoSize = true;
-            tINHTRANGLabel.Location = new System.Drawing.Point(18, 94);
+            tINHTRANGLabel.Location = new System.Drawing.Point(37, 116);
             tINHTRANGLabel.Name = "tINHTRANGLabel";
             tINHTRANGLabel.Size = new System.Drawing.Size(80, 16);
             tINHTRANGLabel.TabIndex = 4;
@@ -272,7 +275,7 @@
             // cHOMUONLabel
             // 
             cHOMUONLabel.AutoSize = true;
-            cHOMUONLabel.Location = new System.Drawing.Point(276, 97);
+            cHOMUONLabel.Location = new System.Drawing.Point(295, 119);
             cHOMUONLabel.Name = "cHOMUONLabel";
             cHOMUONLabel.Size = new System.Drawing.Size(72, 16);
             cHOMUONLabel.TabIndex = 6;
@@ -281,7 +284,7 @@
             // mANGANTULabel
             // 
             mANGANTULabel.AutoSize = true;
-            mANGANTULabel.Location = new System.Drawing.Point(233, 50);
+            mANGANTULabel.Location = new System.Drawing.Point(252, 72);
             mANGANTULabel.Name = "mANGANTULabel";
             mANGANTULabel.Size = new System.Drawing.Size(78, 16);
             mANGANTULabel.TabIndex = 8;
@@ -290,7 +293,7 @@
             // maTLLabel1
             // 
             maTLLabel1.AutoSize = true;
-            maTLLabel1.Location = new System.Drawing.Point(975, 101);
+            maTLLabel1.Location = new System.Drawing.Point(1332, 101);
             maTLLabel1.Name = "maTLLabel1";
             maTLLabel1.Size = new System.Drawing.Size(47, 16);
             maTLLabel1.TabIndex = 24;
@@ -311,7 +314,7 @@
             this.barDockControlTop.Location = new System.Drawing.Point(0, 25);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1367, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1557, 0);
             // 
             // barDockControlBottom
             // 
@@ -320,7 +323,7 @@
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 811);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1367, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1557, 0);
             // 
             // barDockControlLeft
             // 
@@ -335,7 +338,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1367, 25);
+            this.barDockControlRight.Location = new System.Drawing.Point(1557, 25);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 786);
@@ -425,7 +428,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager2;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControl1.Size = new System.Drawing.Size(1367, 25);
+            this.barDockControl1.Size = new System.Drawing.Size(1557, 25);
             // 
             // barDockControl2
             // 
@@ -434,7 +437,7 @@
             this.barDockControl2.Location = new System.Drawing.Point(0, 811);
             this.barDockControl2.Manager = this.barManager2;
             this.barDockControl2.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControl2.Size = new System.Drawing.Size(1367, 0);
+            this.barDockControl2.Size = new System.Drawing.Size(1557, 0);
             // 
             // barDockControl3
             // 
@@ -449,7 +452,7 @@
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1367, 25);
+            this.barDockControl4.Location = new System.Drawing.Point(1557, 25);
             this.barDockControl4.Manager = this.barManager2;
             this.barDockControl4.Margin = new System.Windows.Forms.Padding(4);
             this.barDockControl4.Size = new System.Drawing.Size(0, 786);
@@ -511,9 +514,7 @@
             // 
             // GroupBox1
             // 
-            this.GroupBox1.Controls.Add(this.btnTimkiem);
             this.GroupBox1.Controls.Add(maTLLabel1);
-            this.GroupBox1.Controls.Add(this.txtTimkiem);
             this.GroupBox1.Controls.Add(this.cmbMATL);
             this.GroupBox1.Controls.Add(mANGONNGULabel);
             this.GroupBox1.Controls.Add(this.cmbMANN);
@@ -538,35 +539,17 @@
             this.GroupBox1.Controls.Add(iSBNLabel);
             this.GroupBox1.Controls.Add(this.txtISBN);
             this.GroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.GroupBox1.Location = new System.Drawing.Point(0, 601);
+            this.GroupBox1.Location = new System.Drawing.Point(0, 641);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(1367, 210);
+            this.GroupBox1.Size = new System.Drawing.Size(1557, 170);
             this.GroupBox1.TabIndex = 36;
             this.GroupBox1.Text = "groupControl1";
-            // 
-            // btnTimkiem
-            // 
-            this.btnTimkiem.Location = new System.Drawing.Point(649, 146);
-            this.btnTimkiem.Name = "btnTimkiem";
-            this.btnTimkiem.Size = new System.Drawing.Size(117, 23);
-            this.btnTimkiem.TabIndex = 72;
-            this.btnTimkiem.Text = "Tìm kiếm";
-            this.btnTimkiem.UseVisualStyleBackColor = true;
-            this.btnTimkiem.Click += new System.EventHandler(this.btnTimkiem_Click);
-            // 
-            // txtTimkiem
-            // 
-            this.txtTimkiem.Location = new System.Drawing.Point(792, 147);
-            this.txtTimkiem.MenuManager = this.barManager1;
-            this.txtTimkiem.Name = "txtTimkiem";
-            this.txtTimkiem.Size = new System.Drawing.Size(488, 22);
-            this.txtTimkiem.TabIndex = 71;
             // 
             // cmbMATL
             // 
             this.cmbMATL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDS, "MaTL", true));
             this.cmbMATL.FormattingEnabled = true;
-            this.cmbMATL.Location = new System.Drawing.Point(1028, 98);
+            this.cmbMATL.Location = new System.Drawing.Point(1385, 98);
             this.cmbMATL.Name = "cmbMATL";
             this.cmbMATL.Size = new System.Drawing.Size(121, 24);
             this.cmbMATL.TabIndex = 25;
@@ -583,7 +566,7 @@
             // txtNhaXB
             // 
             this.txtNhaXB.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDS, "NHAXB", true));
-            this.txtNhaXB.Location = new System.Drawing.Point(1028, 51);
+            this.txtNhaXB.Location = new System.Drawing.Point(980, 95);
             this.txtNhaXB.Name = "txtNhaXB";
             this.txtNhaXB.Size = new System.Drawing.Size(100, 23);
             this.txtNhaXB.TabIndex = 19;
@@ -591,7 +574,7 @@
             // txtGia
             // 
             this.txtGia.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDS, "Gia", true));
-            this.txtGia.Location = new System.Drawing.Point(1224, 47);
+            this.txtGia.Location = new System.Drawing.Point(1175, 94);
             this.txtGia.Name = "txtGia";
             this.txtGia.Size = new System.Drawing.Size(100, 23);
             this.txtGia.TabIndex = 17;
@@ -623,9 +606,9 @@
             // txtHinh
             // 
             this.txtHinh.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDS, "HinhAnhPath", true));
-            this.txtHinh.Location = new System.Drawing.Point(114, 146);
+            this.txtHinh.Location = new System.Drawing.Point(1082, 50);
             this.txtHinh.Name = "txtHinh";
-            this.txtHinh.Size = new System.Drawing.Size(488, 23);
+            this.txtHinh.Size = new System.Drawing.Size(276, 23);
             this.txtHinh.TabIndex = 9;
             // 
             // txtNoidung
@@ -672,15 +655,15 @@
             this.GroupBox2.Controls.Add(mASACHLabel);
             this.GroupBox2.Controls.Add(this.txtMAS);
             this.GroupBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.GroupBox2.Location = new System.Drawing.Point(0, 238);
+            this.GroupBox2.Location = new System.Drawing.Point(0, 232);
             this.GroupBox2.Name = "GroupBox2";
-            this.GroupBox2.Size = new System.Drawing.Size(647, 363);
+            this.GroupBox2.Size = new System.Drawing.Size(649, 409);
             this.GroupBox2.TabIndex = 53;
             this.GroupBox2.Text = "groupControl1";
             // 
             // btnGhisach
             // 
-            this.btnGhisach.Location = new System.Drawing.Point(518, 65);
+            this.btnGhisach.Location = new System.Drawing.Point(537, 87);
             this.btnGhisach.Name = "btnGhisach";
             this.btnGhisach.Size = new System.Drawing.Size(75, 23);
             this.btnGhisach.TabIndex = 10;
@@ -692,7 +675,7 @@
             // 
             this.cmbMANT.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSach, "MANGANTU", true));
             this.cmbMANT.FormattingEnabled = true;
-            this.cmbMANT.Location = new System.Drawing.Point(317, 47);
+            this.cmbMANT.Location = new System.Drawing.Point(336, 69);
             this.cmbMANT.Name = "cmbMANT";
             this.cmbMANT.Size = new System.Drawing.Size(121, 24);
             this.cmbMANT.TabIndex = 9;
@@ -701,7 +684,7 @@
             // 
             this.cmbCM.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSach, "CHOMUON", true));
             this.cmbCM.FormattingEnabled = true;
-            this.cmbCM.Location = new System.Drawing.Point(354, 94);
+            this.cmbCM.Location = new System.Drawing.Point(373, 116);
             this.cmbCM.Name = "cmbCM";
             this.cmbCM.Size = new System.Drawing.Size(121, 24);
             this.cmbCM.TabIndex = 7;
@@ -710,7 +693,7 @@
             // 
             this.cmbTT.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSach, "TINHTRANG", true));
             this.cmbTT.FormattingEnabled = true;
-            this.cmbTT.Location = new System.Drawing.Point(104, 91);
+            this.cmbTT.Location = new System.Drawing.Point(123, 113);
             this.cmbTT.Name = "cmbTT";
             this.cmbTT.Size = new System.Drawing.Size(121, 24);
             this.cmbTT.TabIndex = 5;
@@ -718,7 +701,7 @@
             // txtMAS
             // 
             this.txtMAS.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSach, "MASACH", true));
-            this.txtMAS.Location = new System.Drawing.Point(77, 48);
+            this.txtMAS.Location = new System.Drawing.Point(96, 70);
             this.txtMAS.Name = "txtMAS";
             this.txtMAS.Size = new System.Drawing.Size(100, 23);
             this.txtMAS.TabIndex = 1;
@@ -772,7 +755,7 @@
             this.gcDAUSACH.Name = "gcDAUSACH";
             this.gcDAUSACH.RowHeadersWidth = 51;
             this.gcDAUSACH.RowTemplate.Height = 24;
-            this.gcDAUSACH.Size = new System.Drawing.Size(1367, 213);
+            this.gcDAUSACH.Size = new System.Drawing.Size(1557, 207);
             this.gcDAUSACH.TabIndex = 27;
             // 
             // dataGridViewTextBoxColumn1
@@ -916,11 +899,11 @@
             this.dataGridViewTextBoxColumn16});
             this.gcSACH.DataSource = this.bdsSach;
             this.gcSACH.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcSACH.Location = new System.Drawing.Point(647, 238);
+            this.gcSACH.Location = new System.Drawing.Point(649, 232);
             this.gcSACH.Name = "gcSACH";
             this.gcSACH.RowHeadersWidth = 51;
             this.gcSACH.RowTemplate.Height = 24;
-            this.gcSACH.Size = new System.Drawing.Size(720, 363);
+            this.gcSACH.Size = new System.Drawing.Size(908, 409);
             this.gcSACH.TabIndex = 70;
             // 
             // dataGridViewTextBoxColumn14
@@ -970,16 +953,46 @@
             this.dataGridViewTextBoxColumn16.ValueMember = "NGANTU.MANGANTU";
             this.dataGridViewTextBoxColumn16.Width = 125;
             // 
+            // GroupBox3
+            // 
+            this.GroupBox3.Controls.Add(this.btnTimkiem);
+            this.GroupBox3.Controls.Add(this.txtTimkiem);
+            this.GroupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GroupBox3.Location = new System.Drawing.Point(649, 547);
+            this.GroupBox3.Name = "GroupBox3";
+            this.GroupBox3.Size = new System.Drawing.Size(908, 94);
+            this.GroupBox3.TabIndex = 79;
+            this.GroupBox3.Text = "groupControl1";
+            // 
+            // btnTimkiem
+            // 
+            this.btnTimkiem.Location = new System.Drawing.Point(424, 54);
+            this.btnTimkiem.Name = "btnTimkiem";
+            this.btnTimkiem.Size = new System.Drawing.Size(117, 23);
+            this.btnTimkiem.TabIndex = 74;
+            this.btnTimkiem.Text = "Tìm kiếm";
+            this.btnTimkiem.UseVisualStyleBackColor = true;
+            this.btnTimkiem.Click += new System.EventHandler(this.btnTimkiem_Click);
+            // 
+            // txtTimkiem
+            // 
+            this.txtTimkiem.Location = new System.Drawing.Point(60, 55);
+            this.txtTimkiem.MenuManager = this.barManager1;
+            this.txtTimkiem.Name = "txtTimkiem";
+            this.txtTimkiem.Size = new System.Drawing.Size(266, 22);
+            this.txtTimkiem.TabIndex = 73;
+            // 
             // frmSach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1367, 811);
+            this.ClientSize = new System.Drawing.Size(1557, 811);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.GroupBox3);
             this.Controls.Add(this.gcSACH);
             this.Controls.Add(this.GroupBox2);
-            this.Controls.Add(this.GroupBox1);
             this.Controls.Add(this.gcDAUSACH);
+            this.Controls.Add(this.GroupBox1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -1002,7 +1015,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.GroupBox1)).EndInit();
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTimkiem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GroupBox2)).EndInit();
             this.GroupBox2.ResumeLayout(false);
             this.GroupBox2.PerformLayout();
@@ -1012,6 +1024,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.sACHBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sACHBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSACH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GroupBox3)).EndInit();
+            this.GroupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtTimkiem.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1067,8 +1082,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnMenuXoa;
         private System.Windows.Forms.Button btnGhisach;
         private System.Windows.Forms.ComboBox cmbMATL;
-        private DevExpress.XtraEditors.TextEdit txtTimkiem;
-        private System.Windows.Forms.Button btnTimkiem;
         private System.Windows.Forms.DataGridView gcDAUSACH;
         private System.Windows.Forms.BindingSource bdsCT_PHIEUMUON;
         private DSTableAdapters.CT_PHIEUMUONTableAdapter CT_PHIEUMUONTableAdapter;
@@ -1093,5 +1106,8 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn13;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraEditors.GroupControl GroupBox3;
+        private System.Windows.Forms.Button btnTimkiem;
+        private DevExpress.XtraEditors.TextEdit txtTimkiem;
     }
 }

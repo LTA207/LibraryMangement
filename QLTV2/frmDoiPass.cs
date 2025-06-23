@@ -17,6 +17,8 @@ namespace QLTV2
         {
             InitializeComponent();
             setUpRole();
+            txtPass.KeyPress += txtPassword_KeyPress;
+            txtPassValid.KeyPress += txtPassword_KeyPress;
         }
         private void setUpRole()
         {
@@ -207,6 +209,14 @@ namespace QLTV2
             }
 
             return loginName;
+        }
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                e.Handled = true;
+                //MessageBox.Show("Không được nhập dấu cách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
     }

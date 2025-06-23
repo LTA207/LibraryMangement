@@ -15,6 +15,8 @@ namespace QLTV2
         public frmLogin()
         {
             InitializeComponent();
+            txtUsername.KeyPress += TextBox_KeyPress_KhongDauCach;
+            txtPassword.KeyPress += TextBox_KeyPress_KhongDauCach;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -117,5 +119,14 @@ namespace QLTV2
         {
             Application.Exit(); // Thoát luôn chương trình
         }
+        private void TextBox_KeyPress_KhongDauCach(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                e.Handled = true;
+                //MessageBox.Show("Không được nhập dấu cách!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
     }
 }

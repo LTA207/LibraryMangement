@@ -71,13 +71,16 @@ namespace QLTV2
             this.gcDG.CellValueChanged += gcDOCGIA_CellValueChanged;
             this.gcDG.CellBeginEdit += gcDOCGIA_CellBeginEdit;
             SetupGenderComboBox();
-            SetupHoatDongComboBox();
+            //SetupHoatDongComboBox();
             SetupColunmPhai();
             SetupColunmHD();
             txtHODG.KeyPress += OnlyAllowLetters_KeyPress;
             txtTENDG.KeyPress += OnlyAllowLetters_KeyPress;
             this.gcDG.EditingControlShowing += gcDG_EditingControlShowing;
             this.gcDG.CellValidating += gcDG_CellValidating;
+
+            GroupBox1.Enabled = false;
+            if (undoStack.Count == 0) btnPhuchoi.Enabled = false;
         }
 
         private void gcDOCGIA_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -93,12 +96,17 @@ namespace QLTV2
             gcDG.Enabled = false;
             bdsDG.AddNew();
             dtpDOB.Value = DateTime.Now;
-            dtpLAMTHE.Value = DateTime.Now;
             dtpHETHAN.Value = DateTime.Now;
 
             cmbPhai.SelectedValue = true;
 
-            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = false;
+            if (bdsDG.Current != null)
+            {
+                ((DataRowView)bdsDG.Current)["HOATDONG"] = true;
+                ((DataRowView)bdsDG.Current)["NGAYLAMTHE"] = DateTime.Now;
+            }
+
+            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = GroupBox2.Enabled = false;
             btnGhi.Enabled = btnReload.Enabled = true;
             txtHODG.Focus();
         }
@@ -110,15 +118,15 @@ namespace QLTV2
             int maDG = Convert.ToInt32(((DataRowView)bdsDG.Current)["MADG"]);
             int soPhieuChuaTra = GetSoPhieuChuaTra(maDG);
 
-            if (soPhieuChuaTra > 0)
+            if (bdsPM.Count > 0)
             {
-                MessageBox.Show("Độc giả đang có sách mượn chưa trả, không thể xóa.");
+                MessageBox.Show("Độc giả đã lập phiếu nên không thể xóa.");
                 return;
             }
 
-            if(bdsPM.Count > 0)
+            if (soPhieuChuaTra > 0)
             {
-                MessageBox.Show("Độc giả đã lập phiếu nên không thể xóa.");
+                MessageBox.Show("Độc giả đang có sách mượn chưa trả, không thể xóa.");
                 return;
             }
 
@@ -134,11 +142,20 @@ namespace QLTV2
                     MessageBox.Show("Lỗi xóa độc giả.\n" + ex.Message);
                 }
             }
+
+            if(undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (dtpHETHAN.Value.Date < dtpLAMTHE.Value.Date)
+            if (dtpHETHAN.Value.Date < DateTime.Now && GroupBox1.Enabled == true)
             {
                 MessageBox.Show("Ngày hết hạn thẻ phải sau ngày làm thẻ.");
                 dtpHETHAN.Focus();
@@ -155,6 +172,30 @@ namespace QLTV2
             {
                 MessageBox.Show("Họ nhân viên không được thiếu.");
                 txtTENDG.Focus();
+                return;
+            }
+            int? currentMaDG = null;
+            if (bdsDG.Current != null)
+            {
+                var row = ((DataRowView)bdsDG.Current).Row;
+                if (row.RowState != DataRowState.Added && row["MADG"] != DBNull.Value)
+                    currentMaDG = Convert.ToInt32(row["MADG"]);
+            }
+
+            string sdt = txtPHONE.Text.Trim();
+            string email = txtEMAIL.Text.Trim();
+
+            if (IsDuplicate("DIENTHOAI", sdt, currentMaDG))
+            {
+                MessageBox.Show("Số điện thoại đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPHONE.Focus();
+                return;
+            }
+
+            if (IsDuplicate("EMAILDG", email, currentMaDG))
+            {
+                MessageBox.Show("Email đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEMAIL.Focus();
                 return;
             }
 
@@ -185,9 +226,18 @@ namespace QLTV2
                 return;
             }
 
-            btnGhi.Enabled = btnPhuchoi.Enabled = GroupBox1.Enabled = true;
-            btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = true;
+            btnGhi.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;
             gcDG.Enabled = true;
+            GroupBox1.Enabled = false;
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
         }
         private void btnPhuchoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -241,14 +291,27 @@ namespace QLTV2
                 gcDG.Refresh();
                 MessageBox.Show("Đã phục hồi dòng dữ liệu.");
             }
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
             else
             {
-                MessageBox.Show("Không có thao tác nào để phục hồi.");
+                btnPhuchoi.Enabled = true;
             }
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+
             if (bdsDG.Current != null && bdsDG.IsBindingSuspended == false)
             {
                 bdsDG.CancelEdit();
@@ -262,7 +325,10 @@ namespace QLTV2
             NHANVIENTableAdapter.Fill(dS.NHANVIEN);
             PHIEUMUONTableAdapter.Fill(dS.PHIEUMUON);
 
-            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = true;
+            bdsDG.RemoveFilter();
+            isFilterActive = false;
+
+            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = GroupBox2.Enabled = true;
             GroupBox1.Enabled = false;
             gcDG.Enabled = true;
         }
@@ -270,13 +336,31 @@ namespace QLTV2
         {
             Close();
         }
-
         private void gcDOCGIA_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dtpHETHAN.Value.Date < dtpLAMTHE.Value.Date)
+
+            // Lấy dòng hiện tại
+            if (bdsDG.Current == null) return;
+            DataRow currentRow = ((DataRowView)bdsDG.Current).Row;
+
+            int? currentMaDG = null;
+            if (currentRow.RowState != DataRowState.Added && currentRow["MADG"] != DBNull.Value)
+                currentMaDG = Convert.ToInt32(currentRow["MADG"]);
+
+            string sdt = currentRow["DIENTHOAI"]?.ToString().Trim();
+            string email = currentRow["EMAILDG"]?.ToString().Trim();
+
+            if (IsDuplicate("DIENTHOAI", sdt, currentMaDG))
             {
-                MessageBox.Show("Ngày hết hạn thẻ phải sau ngày làm thẻ.");
-                dtpHETHAN.Focus();
+                MessageBox.Show("Số điện thoại đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                gcDG.CancelEdit();
+                return;
+            }
+
+            if (IsDuplicate("EMAILDG", email, currentMaDG))
+            {
+                MessageBox.Show("Email đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                gcDG.CancelEdit();
                 return;
             }
 
@@ -289,7 +373,16 @@ namespace QLTV2
             {
                 MessageBox.Show("Lỗi khi cập nhật: " + ex.Message);
             }
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
         }
+
         private int GetSoPhieuChuaTra(int maDG)
         {
             int soPhieu = 0;
@@ -325,19 +418,19 @@ namespace QLTV2
             cmbPhai.DataBindings.Clear();
             cmbPhai.DataBindings.Add("SelectedValue", bdsDG, "GIOITINH", true, DataSourceUpdateMode.OnPropertyChanged);
         }
-        private void SetupHoatDongComboBox()
-        {
-            cmbHD.DataSource = new List<KeyValuePair<bool, string>>()
-            {
-                new KeyValuePair<bool, string>(true, "Hoạt động"),
-                new KeyValuePair<bool, string>(false, "Không hoạt động")
-            };
-            cmbHD.DisplayMember = "Value";
-            cmbHD.ValueMember = "Key";
+        //private void SetupHoatDongComboBox()
+        //{
+        //    cmbHD.DataSource = new List<KeyValuePair<bool, string>>()
+        //    {
+        //        new KeyValuePair<bool, string>(true, "Hoạt động"),
+        //        new KeyValuePair<bool, string>(false, "Không hoạt động")
+        //    };
+        //    cmbHD.DisplayMember = "Value";
+        //    cmbHD.ValueMember = "Key";
 
-            cmbHD.DataBindings.Clear();
-            cmbHD.DataBindings.Add("SelectedValue", bdsDG, "HOATDONG", true, DataSourceUpdateMode.OnPropertyChanged);
-        }
+        //    cmbHD.DataBindings.Clear();
+        //    cmbHD.DataBindings.Add("SelectedValue", bdsDG, "HOATDONG", true, DataSourceUpdateMode.OnPropertyChanged);
+        //}
 
         private void btnFindDG_Click(object sender, EventArgs e)
         {
@@ -449,6 +542,111 @@ namespace QLTV2
                     e.Cancel = true;
                 }
             }
+
+            // Kiểm tra bỏ trống email, sđt
+            if (gcDG.Columns[e.ColumnIndex].Name == "colEmail" || gcDG.Columns[e.ColumnIndex].Name == "colPHONE")
+            {
+                string newValue = e.FormattedValue?.ToString().Trim();
+
+                if (string.IsNullOrWhiteSpace(newValue))
+                {
+                    MessageBox.Show($"{gcDG.Columns[e.ColumnIndex].HeaderText} không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                }
+            }
+            // Kiểm tra trùng sđt
+            if (gcDG.Columns[e.ColumnIndex].Name == "colPHONE")
+            {
+                string newPhone = e.FormattedValue?.ToString().Trim();
+                int? currentMaDG = null;
+
+                if (bdsDG.Current != null)
+                {
+                    var row = ((DataRowView)bdsDG.Current).Row;
+                    if (row.RowState != DataRowState.Added && row["MADG"] != DBNull.Value)
+                        currentMaDG = Convert.ToInt32(row["MADG"]);
+                }
+
+                if (IsDuplicate("DIENTHOAI", newPhone, currentMaDG))
+                {
+                    MessageBox.Show("Số điện thoại đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
+            // Kiểm tra trùng Email
+            if (gcDG.Columns[e.ColumnIndex].Name == "colEmail")
+            {
+                string newEmail = e.FormattedValue?.ToString().Trim();
+                int? currentMaDG = null;
+
+                if (bdsDG.Current != null)
+                {
+                    var row = ((DataRowView)bdsDG.Current).Row;
+                    if (row.RowState != DataRowState.Added && row["MADG"] != DBNull.Value)
+                        currentMaDG = Convert.ToInt32(row["MADG"]);
+                }
+
+                if (IsDuplicate("EMAILDG", newEmail, currentMaDG))
+                {
+                    MessageBox.Show("Email đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
+            // Kiểm tra ngày hết hạn phải sau ngày làm thẻ
+            if (gcDG.Columns[e.ColumnIndex].Name == "colNgayHetHan" || gcDG.Columns[e.ColumnIndex].Name == "colNgayLamThe")
+            {
+                try
+                {
+                    DateTime lamThe, hetHan;
+
+                    var row = ((DataRowView)bdsDG.Current).Row;
+
+                    // Nếu đang chỉnh cột làm thẻ → lấy giá trị mới từ e.FormattedValue
+                    if (gcDG.Columns[e.ColumnIndex].Name == "colNgayLamThe")
+                    {
+                        lamThe = DateTime.Parse(e.FormattedValue.ToString());
+                        hetHan = Convert.ToDateTime(row["NGAYHETHAN"]);
+                    }
+                    else // đang chỉnh ngày hết hạn
+                    {
+                        lamThe = Convert.ToDateTime(row["NGAYLAMTHE"]);
+                        hetHan = DateTime.Parse(e.FormattedValue.ToString());
+                    }
+
+                    if (hetHan < lamThe)
+                    {
+                        MessageBox.Show("Ngày hết hạn thẻ phải sau ngày làm thẻ.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        e.Cancel = true;
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Định dạng ngày không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                }
+            }
+
+        }
+        private bool IsDuplicate(string fieldName, string value, int? currentMaDG = null)
+        {
+            foreach (DataRow row in dS.DOCGIA.Rows)
+            {
+                if (row.RowState == DataRowState.Deleted) continue;
+
+                if (currentMaDG.HasValue && row["MADG"] != DBNull.Value && Convert.ToInt32(row["MADG"]) == currentMaDG.Value)
+                    continue;
+
+                string fieldValue = row[fieldName]?.ToString().Trim();
+                if (string.Equals(fieldValue, value, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

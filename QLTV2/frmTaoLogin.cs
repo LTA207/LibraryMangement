@@ -14,6 +14,9 @@ namespace QLTV2
             InitializeComponent();
             cmbUser.Enabled = true;  
             setUpQuyen();
+            txtUsername.KeyPress += txt_NoSpace_KeyPress;
+            txtPassword.KeyPress += txt_NoSpace_KeyPress;
+
         }
 
         private void setUpQuyen()
@@ -139,34 +142,30 @@ namespace QLTV2
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text.Trim();
             string quyen = cmbQuyen.SelectedValue.ToString();
-            string userId = quyen + cmbUser.SelectedValue.ToString(); // Mã độc giả hoặc mã nhân viên
+            string userId = quyen + cmbUser.SelectedValue.ToString(); 
 
             try
             {
-                // Kết nối vào DB master để tạo login
                 using (SqlConnection conn = new SqlConnection(Program.connstr))
                 {
                     conn.Open();
 
-                    // Chuyển sang context của database master
                     using (SqlCommand cmd = new SqlCommand("USE master", conn))
                     {
                         cmd.ExecuteNonQuery();
                     }
 
-                    // Bắt đầu gọi procedure tạo login
                     using (SqlCommand cmd = new SqlCommand())
                     {
                         cmd.Connection = conn;
 
                         if (quyen == "dg")
-                            cmd.CommandText = "TaoLoginDG";  // Tạo login cho Độc giả
+                            cmd.CommandText = "TaoLoginDG"; 
                         else
-                            cmd.CommandText = "TaoLoginAdmin"; // Tạo login cho Admin/Thủ thư
+                            cmd.CommandText = "TaoLoginAdmin";  
 
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        // Truyền tham số
                         cmd.Parameters.AddWithValue("@LoginName", username);
                         cmd.Parameters.AddWithValue("@Password", password);
 
@@ -175,23 +174,31 @@ namespace QLTV2
                         else
                             cmd.Parameters.AddWithValue("@MANV", userId);
 
-                        cmd.ExecuteNonQuery();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string result = reader.GetString(0);
+                                MessageBox.Show(result, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                if (result.Contains("đã tồn tại")) return;
+                            }
+                        }
                     }
+
                     SqlConnection.ClearAllPools();
+
                     MessageBox.Show("Tạo tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Xóa dữ liệu nhập sau khi thành công
+                    // Clear form
                     txtUsername.Clear();
                     txtPassword.Clear();
 
-                    if (cmbQuyen.SelectedValue.ToString() == "dg")
-                    {
-                        LoadDocGiaChuaTaoTK();  // Gọi SP để tải độc giả chưa có tài khoản
-                    }
+                    // Reload combobox user
+                    if (quyen == "dg")
+                        LoadDocGiaChuaTaoTK();
                     else
-                    {
-                        LoadNhanVienChuaTaoTK(); // Nếu là Thủ Thư, xóa danh sách trong cmbUser
-                    }
+                        LoadNhanVienChuaTaoTK();
                 }
             }
             catch (Exception ex)
@@ -204,5 +211,14 @@ namespace QLTV2
         {
             Close();
         }
+        private void txt_NoSpace_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; 
+                //MessageBox.Show("Không được nhập dấu cách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
     }
 }
