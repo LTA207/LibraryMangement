@@ -113,10 +113,22 @@ namespace QLTV2
             this.gcNV.CellBeginEdit += gcNV_CellBeginEdit;
             txtHO.KeyPress += OnlyAllowLetters_KeyPress;
             txtTEN.KeyPress += OnlyAllowLetters_KeyPress;
+            txtPHONE.KeyPress += TxtPhone_KeyPress;
             SetupGenderComboBox();
             SetupGenderComboBoxColumn();
             this.gcNV.EditingControlShowing += gcNV_EditingControlShowing;
             this.gcNV.CellValidating += gcNV_CellValidating;
+
+            GroupBox1.Enabled = false;
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+
         }
 
 
@@ -129,8 +141,10 @@ namespace QLTV2
             gcNV.Enabled = false;
             bdsNV.AddNew();
 
-            btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = false;
+            btnThem.Enabled = btnXoa.Enabled = GroupBox2.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = false;
             btnGhi.Enabled = btnReload.Enabled = true;
+
+            cmbPhai.SelectedIndex = 0;
             txtHO.Focus();
         }
 
@@ -206,9 +220,10 @@ namespace QLTV2
                 return;
             }
 
-            btnGhi.Enabled = btnPhuchoi.Enabled = GroupBox1.Enabled = true;
-            btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = true;
+            btnGhi.Enabled = btnPhuchoi.Enabled = GroupBox2.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;
             gcNV.Enabled = true;
+            GroupBox1.Enabled = false;
         }
         private void btnPhuchoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -304,6 +319,17 @@ namespace QLTV2
             btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = true;
             GroupBox1.Enabled = false;
             gcNV.Enabled = true;
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+            bdsNV.RemoveFilter();
+            txtTimkiem.Text = "";
+            isFilterActive = false;
         }
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -333,6 +359,15 @@ namespace QLTV2
             {
                 MessageBox.Show("Lỗi khi cập nhật: " + ex.Message);
             }
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+
         }
         private void gcNV_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
@@ -427,6 +462,25 @@ namespace QLTV2
                     tb.KeyPress -= OnlyAllowLetters_KeyPress;
                 }
             }
+
+            if (gcNV.CurrentCell.ColumnIndex == colDIENTHOAI.Index)
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress -= TxtPhone_KeyPress;
+                    tb.KeyPress += TxtPhone_KeyPress;
+                }
+            }
+            else
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress -= TxtPhone_KeyPress;
+                }
+            }
+
         }
         private void gcNV_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -442,6 +496,27 @@ namespace QLTV2
                 }
             }
         }
+        private void TxtPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            if (tb.Text.Length >= 11 && tb.SelectionLength == 0)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
 
     }
 }

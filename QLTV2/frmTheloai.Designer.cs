@@ -39,12 +39,12 @@
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhuchoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnReload = new DevExpress.XtraBars.BarButtonItem();
-            this.btnTimkiem = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btnTimkiem = new DevExpress.XtraBars.BarButtonItem();
             this.dS = new QLTV2.DS();
             this.tableAdapterManager = new QLTV2.DSTableAdapters.TableAdapterManager();
             this.bdsTL = new System.Windows.Forms.BindingSource(this.components);
@@ -70,8 +70,9 @@
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtTimkiem = new System.Windows.Forms.TextBox();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.btnFindTL = new System.Windows.Forms.Button();
+            this.txtTimkiem = new System.Windows.Forms.TextBox();
             maTLLabel = new System.Windows.Forms.Label();
             tHELOAILabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -82,6 +83,8 @@
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcDAUSACH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // maTLLabel
@@ -96,7 +99,7 @@
             // tHELOAILabel
             // 
             tHELOAILabel.AutoSize = true;
-            tHELOAILabel.Location = new System.Drawing.Point(28, 172);
+            tHELOAILabel.Location = new System.Drawing.Point(335, 57);
             tHELOAILabel.Name = "tHELOAILabel";
             tHELOAILabel.Size = new System.Drawing.Size(62, 16);
             tHELOAILabel.TabIndex = 2;
@@ -184,12 +187,6 @@
             this.btnReload.Name = "btnReload";
             this.btnReload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReload_ItemClick);
             // 
-            // btnTimkiem
-            // 
-            this.btnTimkiem.Caption = "Tìm kiếm";
-            this.btnTimkiem.Id = 5;
-            this.btnTimkiem.Name = "btnTimkiem";
-            // 
             // btnThoat
             // 
             this.btnThoat.Caption = "Thoát";
@@ -210,7 +207,7 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 635);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 710);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
             this.barDockControlBottom.Size = new System.Drawing.Size(1030, 0);
@@ -222,7 +219,7 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 610);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 685);
             // 
             // barDockControlRight
             // 
@@ -231,7 +228,13 @@
             this.barDockControlRight.Location = new System.Drawing.Point(1030, 25);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 610);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 685);
+            // 
+            // btnTimkiem
+            // 
+            this.btnTimkiem.Caption = "Tìm kiếm";
+            this.btnTimkiem.Id = 5;
+            this.btnTimkiem.Name = "btnTimkiem";
             // 
             // dS
             // 
@@ -299,23 +302,21 @@
             // 
             // GroupBox1
             // 
-            this.GroupBox1.Controls.Add(this.btnFindTL);
-            this.GroupBox1.Controls.Add(this.txtTimkiem);
             this.GroupBox1.Controls.Add(tHELOAILabel);
             this.GroupBox1.Controls.Add(this.txtTENTL);
             this.GroupBox1.Controls.Add(maTLLabel);
             this.GroupBox1.Controls.Add(this.txtMATL);
-            this.GroupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.GroupBox1.Location = new System.Drawing.Point(0, 245);
+            this.GroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GroupBox1.Location = new System.Drawing.Point(0, 506);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(306, 390);
+            this.GroupBox1.Size = new System.Drawing.Size(1030, 204);
             this.GroupBox1.TabIndex = 15;
             this.GroupBox1.Text = "groupControl1";
             // 
             // txtTENTL
             // 
             this.txtTENTL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsTL, "THELOAI", true));
-            this.txtTENTL.Location = new System.Drawing.Point(96, 169);
+            this.txtTENTL.Location = new System.Drawing.Point(403, 54);
             this.txtTENTL.Name = "txtTENTL";
             this.txtTENTL.Size = new System.Drawing.Size(100, 23);
             this.txtTENTL.TabIndex = 3;
@@ -358,11 +359,11 @@
             this.dataGridViewTextBoxColumn16});
             this.gcDAUSACH.DataSource = this.bdsDS;
             this.gcDAUSACH.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcDAUSACH.Location = new System.Drawing.Point(306, 245);
+            this.gcDAUSACH.Location = new System.Drawing.Point(382, 245);
             this.gcDAUSACH.Name = "gcDAUSACH";
             this.gcDAUSACH.RowHeadersWidth = 51;
             this.gcDAUSACH.RowTemplate.Height = 24;
-            this.gcDAUSACH.Size = new System.Drawing.Size(724, 390);
+            this.gcDAUSACH.Size = new System.Drawing.Size(648, 261);
             this.gcDAUSACH.TabIndex = 19;
             // 
             // dataGridViewTextBoxColumn5
@@ -461,31 +462,43 @@
             this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
             this.dataGridViewTextBoxColumn16.Width = 125;
             // 
-            // txtTimkiem
+            // groupControl1
             // 
-            this.txtTimkiem.Location = new System.Drawing.Point(31, 247);
-            this.txtTimkiem.Name = "txtTimkiem";
-            this.txtTimkiem.Size = new System.Drawing.Size(252, 23);
-            this.txtTimkiem.TabIndex = 4;
+            this.groupControl1.Controls.Add(this.btnFindTL);
+            this.groupControl1.Controls.Add(this.txtTimkiem);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupControl1.Location = new System.Drawing.Point(0, 245);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(382, 261);
+            this.groupControl1.TabIndex = 24;
+            this.groupControl1.Text = "groupControl1";
             // 
             // btnFindTL
             // 
-            this.btnFindTL.Location = new System.Drawing.Point(109, 301);
+            this.btnFindTL.Location = new System.Drawing.Point(143, 99);
             this.btnFindTL.Name = "btnFindTL";
             this.btnFindTL.Size = new System.Drawing.Size(75, 23);
-            this.btnFindTL.TabIndex = 5;
+            this.btnFindTL.TabIndex = 7;
             this.btnFindTL.Text = "Tìm kiếm";
             this.btnFindTL.UseVisualStyleBackColor = true;
             this.btnFindTL.Click += new System.EventHandler(this.btnFindTL_Click);
+            // 
+            // txtTimkiem
+            // 
+            this.txtTimkiem.Location = new System.Drawing.Point(65, 45);
+            this.txtTimkiem.Name = "txtTimkiem";
+            this.txtTimkiem.Size = new System.Drawing.Size(252, 23);
+            this.txtTimkiem.TabIndex = 6;
             // 
             // frmTheloai
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1030, 635);
+            this.ClientSize = new System.Drawing.Size(1030, 710);
             this.Controls.Add(this.gcDAUSACH);
-            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.gcTL);
+            this.Controls.Add(this.GroupBox1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -505,6 +518,9 @@
             this.GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcDAUSACH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -553,6 +569,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
         private System.Windows.Forms.Button btnFindTL;
         private System.Windows.Forms.TextBox txtTimkiem;
     }

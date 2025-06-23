@@ -58,17 +58,6 @@
             this.DOCGIATableAdapter = new QLTV2.DSTableAdapters.DOCGIATableAdapter();
             this.tableAdapterManager = new QLTV2.DSTableAdapters.TableAdapterManager();
             this.gcDG = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHODG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTENDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbColPhai = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNgayLamThe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNgayHetHan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbColHD = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.GroupBox1 = new DevExpress.XtraEditors.GroupControl();
             this.dtpHETHAN = new System.Windows.Forms.DateTimePicker();
             this.txtPHONE = new System.Windows.Forms.TextBox();
@@ -84,6 +73,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnFindDG = new System.Windows.Forms.Button();
             this.txtTimkiem = new System.Windows.Forms.TextBox();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHODG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTENDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbColPhai = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colNgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNgayLamThe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNgayHetHan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbColHD = new System.Windows.Forms.DataGridViewComboBoxColumn();
             hODGLabel = new System.Windows.Forms.Label();
             tENDGLabel = new System.Windows.Forms.Label();
             eMAILDGLabel = new System.Windows.Forms.Label();
@@ -335,7 +335,7 @@
             this.colTENDG,
             this.colEmail,
             this.cmbColPhai,
-            this.dataGridViewTextBoxColumn5,
+            this.colNgaySinh,
             this.dataGridViewTextBoxColumn6,
             this.colPhone,
             this.colNgayLamThe,
@@ -349,95 +349,6 @@
             this.gcDG.RowTemplate.Height = 24;
             this.gcDG.Size = new System.Drawing.Size(1098, 220);
             this.gcDG.TabIndex = 5;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MADG";
-            this.dataGridViewTextBoxColumn1.HeaderText = "MADG";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // colHODG
-            // 
-            this.colHODG.DataPropertyName = "HODG";
-            this.colHODG.HeaderText = "HODG";
-            this.colHODG.MinimumWidth = 6;
-            this.colHODG.Name = "colHODG";
-            // 
-            // colTENDG
-            // 
-            this.colTENDG.DataPropertyName = "TENDG";
-            this.colTENDG.HeaderText = "TENDG";
-            this.colTENDG.MinimumWidth = 6;
-            this.colTENDG.Name = "colTENDG";
-            // 
-            // colEmail
-            // 
-            this.colEmail.DataPropertyName = "EMAILDG";
-            this.colEmail.HeaderText = "EMAILDG";
-            this.colEmail.MinimumWidth = 6;
-            this.colEmail.Name = "colEmail";
-            // 
-            // cmbColPhai
-            // 
-            this.cmbColPhai.DataPropertyName = "GIOITINH";
-            this.cmbColPhai.HeaderText = "GIOITINH";
-            this.cmbColPhai.MinimumWidth = 6;
-            this.cmbColPhai.Name = "cmbColPhai";
-            this.cmbColPhai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "NGAYSINH";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewTextBoxColumn5.HeaderText = "NGAYSINH";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "DIACHI";
-            this.dataGridViewTextBoxColumn6.HeaderText = "DIACHI";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // colPhone
-            // 
-            this.colPhone.DataPropertyName = "DIENTHOAI";
-            this.colPhone.HeaderText = "DIENTHOAI";
-            this.colPhone.MinimumWidth = 6;
-            this.colPhone.Name = "colPhone";
-            // 
-            // colNgayLamThe
-            // 
-            this.colNgayLamThe.DataPropertyName = "NGAYLAMTHE";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.colNgayLamThe.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colNgayLamThe.HeaderText = "NGAYLAMTHE";
-            this.colNgayLamThe.MinimumWidth = 6;
-            this.colNgayLamThe.Name = "colNgayLamThe";
-            // 
-            // colNgayHetHan
-            // 
-            this.colNgayHetHan.DataPropertyName = "NGAYHETHAN";
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.colNgayHetHan.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colNgayHetHan.HeaderText = "NGAYHETHAN";
-            this.colNgayHetHan.MinimumWidth = 6;
-            this.colNgayHetHan.Name = "colNgayHetHan";
-            // 
-            // cmbColHD
-            // 
-            this.cmbColHD.DataPropertyName = "HOATDONG";
-            this.cmbColHD.HeaderText = "HOATDONG";
-            this.cmbColHD.MinimumWidth = 6;
-            this.cmbColHD.Name = "cmbColHD";
-            this.cmbColHD.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // GroupBox1
             // 
@@ -578,6 +489,95 @@
             this.txtTimkiem.Size = new System.Drawing.Size(231, 23);
             this.txtTimkiem.TabIndex = 23;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "MADG";
+            this.dataGridViewTextBoxColumn1.HeaderText = "MADG";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // colHODG
+            // 
+            this.colHODG.DataPropertyName = "HODG";
+            this.colHODG.HeaderText = "HODG";
+            this.colHODG.MinimumWidth = 6;
+            this.colHODG.Name = "colHODG";
+            // 
+            // colTENDG
+            // 
+            this.colTENDG.DataPropertyName = "TENDG";
+            this.colTENDG.HeaderText = "TENDG";
+            this.colTENDG.MinimumWidth = 6;
+            this.colTENDG.Name = "colTENDG";
+            // 
+            // colEmail
+            // 
+            this.colEmail.DataPropertyName = "EMAILDG";
+            this.colEmail.HeaderText = "EMAILDG";
+            this.colEmail.MinimumWidth = 6;
+            this.colEmail.Name = "colEmail";
+            // 
+            // cmbColPhai
+            // 
+            this.cmbColPhai.DataPropertyName = "GIOITINH";
+            this.cmbColPhai.HeaderText = "GIOITINH";
+            this.cmbColPhai.MinimumWidth = 6;
+            this.cmbColPhai.Name = "cmbColPhai";
+            this.cmbColPhai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // colNgaySinh
+            // 
+            this.colNgaySinh.DataPropertyName = "NGAYSINH";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colNgaySinh.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colNgaySinh.HeaderText = "NGAYSINH";
+            this.colNgaySinh.MinimumWidth = 6;
+            this.colNgaySinh.Name = "colNgaySinh";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "DIACHI";
+            this.dataGridViewTextBoxColumn6.HeaderText = "DIACHI";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // colPhone
+            // 
+            this.colPhone.DataPropertyName = "DIENTHOAI";
+            this.colPhone.HeaderText = "DIENTHOAI";
+            this.colPhone.MinimumWidth = 6;
+            this.colPhone.Name = "colPhone";
+            // 
+            // colNgayLamThe
+            // 
+            this.colNgayLamThe.DataPropertyName = "NGAYLAMTHE";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.colNgayLamThe.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colNgayLamThe.HeaderText = "NGAYLAMTHE";
+            this.colNgayLamThe.MinimumWidth = 6;
+            this.colNgayLamThe.Name = "colNgayLamThe";
+            // 
+            // colNgayHetHan
+            // 
+            this.colNgayHetHan.DataPropertyName = "NGAYHETHAN";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.colNgayHetHan.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colNgayHetHan.HeaderText = "NGAYHETHAN";
+            this.colNgayHetHan.MinimumWidth = 6;
+            this.colNgayHetHan.Name = "colNgayHetHan";
+            // 
+            // cmbColHD
+            // 
+            this.cmbColHD.DataPropertyName = "HOATDONG";
+            this.cmbColHD.HeaderText = "HOATDONG";
+            this.cmbColHD.MinimumWidth = 6;
+            this.cmbColHD.Name = "cmbColHD";
+            this.cmbColHD.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
             // frmDocgia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -643,20 +643,20 @@
         private System.Windows.Forms.DateTimePicker dtpDOB;
         private System.Windows.Forms.BindingSource bdsPM;
         private DSTableAdapters.PHIEUMUONTableAdapter PHIEUMUONTableAdapter;
+        private DevExpress.XtraEditors.GroupControl GroupBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnFindDG;
+        private System.Windows.Forms.TextBox txtTimkiem;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHODG;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTENDG;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEmail;
         private System.Windows.Forms.DataGridViewComboBoxColumn cmbColPhai;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNgaySinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPhone;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNgayLamThe;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNgayHetHan;
         private System.Windows.Forms.DataGridViewComboBoxColumn cmbColHD;
-        private DevExpress.XtraEditors.GroupControl GroupBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnFindDG;
-        private System.Windows.Forms.TextBox txtTimkiem;
     }
 }

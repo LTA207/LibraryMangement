@@ -55,8 +55,6 @@
             this.CT_PHIEUMUONTableAdapter = new QLTV2.DSTableAdapters.CT_PHIEUMUONTableAdapter();
             this.gcNV = new System.Windows.Forms.DataGridView();
             this.GroupBox1 = new DevExpress.XtraEditors.GroupControl();
-            this.btnFindNV = new System.Windows.Forms.Button();
-            this.txtTimkiem = new System.Windows.Forms.TextBox();
             this.txtEMAIL = new System.Windows.Forms.TextBox();
             this.txtPHONE = new System.Windows.Forms.TextBox();
             this.txtDIACHI = new System.Windows.Forms.TextBox();
@@ -67,12 +65,15 @@
             this.bdsPM = new System.Windows.Forms.BindingSource(this.components);
             this.PHIEUMUONTableAdapter = new QLTV2.DSTableAdapters.PHIEUMUONTableAdapter();
             this.nHANVIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.GroupBox2 = new DevExpress.XtraEditors.GroupControl();
+            this.btnFindNV = new System.Windows.Forms.Button();
+            this.txtTimkiem = new System.Windows.Forms.TextBox();
             this.gcc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHONV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTENNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbColPhai = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDIENTHOAI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             hONVLabel = new System.Windows.Forms.Label();
             tENNVLabel = new System.Windows.Forms.Label();
@@ -89,6 +90,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTPM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nHANVIENBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GroupBox2)).BeginInit();
+            this.GroupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // hONVLabel
@@ -309,10 +312,10 @@
             this.colTENNV,
             this.cmbColPhai,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
+            this.colDIENTHOAI,
             this.dataGridViewTextBoxColumn6});
             this.gcNV.DataSource = this.bdsNV;
-            this.gcNV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcNV.Dock = System.Windows.Forms.DockStyle.Top;
             this.gcNV.Location = new System.Drawing.Point(0, 25);
             this.gcNV.Name = "gcNV";
             this.gcNV.RowHeadersWidth = 51;
@@ -322,8 +325,6 @@
             // 
             // GroupBox1
             // 
-            this.GroupBox1.Controls.Add(this.btnFindNV);
-            this.GroupBox1.Controls.Add(this.txtTimkiem);
             this.GroupBox1.Controls.Add(eMAILLabel);
             this.GroupBox1.Controls.Add(this.txtEMAIL);
             this.GroupBox1.Controls.Add(dIENTHOAILabel);
@@ -336,29 +337,12 @@
             this.GroupBox1.Controls.Add(this.txtTEN);
             this.GroupBox1.Controls.Add(hONVLabel);
             this.GroupBox1.Controls.Add(this.txtHO);
-            this.GroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.GroupBox1.Location = new System.Drawing.Point(0, 288);
+            this.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GroupBox1.Location = new System.Drawing.Point(323, 288);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(1130, 248);
+            this.GroupBox1.Size = new System.Drawing.Size(807, 248);
             this.GroupBox1.TabIndex = 10;
             this.GroupBox1.Text = "groupControl1";
-            // 
-            // btnFindNV
-            // 
-            this.btnFindNV.Location = new System.Drawing.Point(1014, 80);
-            this.btnFindNV.Name = "btnFindNV";
-            this.btnFindNV.Size = new System.Drawing.Size(75, 23);
-            this.btnFindNV.TabIndex = 15;
-            this.btnFindNV.Text = "Tìm kiếm";
-            this.btnFindNV.UseVisualStyleBackColor = true;
-            this.btnFindNV.Click += new System.EventHandler(this.btnFindNV_Click);
-            // 
-            // txtTimkiem
-            // 
-            this.txtTimkiem.Location = new System.Drawing.Point(759, 79);
-            this.txtTimkiem.Name = "txtTimkiem";
-            this.txtTimkiem.Size = new System.Drawing.Size(212, 23);
-            this.txtTimkiem.TabIndex = 14;
             // 
             // txtEMAIL
             // 
@@ -387,6 +371,7 @@
             // cmbPhai
             // 
             this.cmbPhai.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsNV, "GIOITINH", true));
+            this.cmbPhai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPhai.FormattingEnabled = true;
             this.cmbPhai.Location = new System.Drawing.Point(539, 113);
             this.cmbPhai.Name = "cmbPhai";
@@ -428,6 +413,34 @@
             this.nHANVIENBindingSource.DataMember = "NHANVIEN";
             this.nHANVIENBindingSource.DataSource = this.dS;
             // 
+            // GroupBox2
+            // 
+            this.GroupBox2.Controls.Add(this.btnFindNV);
+            this.GroupBox2.Controls.Add(this.txtTimkiem);
+            this.GroupBox2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.GroupBox2.Location = new System.Drawing.Point(0, 288);
+            this.GroupBox2.Name = "GroupBox2";
+            this.GroupBox2.Size = new System.Drawing.Size(323, 248);
+            this.GroupBox2.TabIndex = 15;
+            this.GroupBox2.Text = "groupControl1";
+            // 
+            // btnFindNV
+            // 
+            this.btnFindNV.Location = new System.Drawing.Point(114, 119);
+            this.btnFindNV.Name = "btnFindNV";
+            this.btnFindNV.Size = new System.Drawing.Size(75, 23);
+            this.btnFindNV.TabIndex = 17;
+            this.btnFindNV.Text = "Tìm kiếm";
+            this.btnFindNV.UseVisualStyleBackColor = true;
+            this.btnFindNV.Click += new System.EventHandler(this.btnFindNV_Click);
+            // 
+            // txtTimkiem
+            // 
+            this.txtTimkiem.Location = new System.Drawing.Point(47, 53);
+            this.txtTimkiem.Name = "txtTimkiem";
+            this.txtTimkiem.Size = new System.Drawing.Size(212, 23);
+            this.txtTimkiem.TabIndex = 16;
+            // 
             // gcc
             // 
             this.gcc.DataPropertyName = "MANV";
@@ -456,7 +469,6 @@
             this.cmbColPhai.HeaderText = "GIOITINH";
             this.cmbColPhai.MinimumWidth = 6;
             this.cmbColPhai.Name = "cmbColPhai";
-            this.cmbColPhai.ReadOnly = true;
             this.cmbColPhai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // dataGridViewTextBoxColumn4
@@ -466,12 +478,12 @@
             this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
-            // dataGridViewTextBoxColumn5
+            // colDIENTHOAI
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "DIENTHOAI";
-            this.dataGridViewTextBoxColumn5.HeaderText = "DIENTHOAI";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.colDIENTHOAI.DataPropertyName = "DIENTHOAI";
+            this.colDIENTHOAI.HeaderText = "DIENTHOAI";
+            this.colDIENTHOAI.MinimumWidth = 6;
+            this.colDIENTHOAI.Name = "colDIENTHOAI";
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -485,8 +497,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1130, 536);
-            this.Controls.Add(this.gcNV);
             this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this.GroupBox2);
+            this.Controls.Add(this.gcNV);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -504,6 +517,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTPM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nHANVIENBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GroupBox2)).EndInit();
+            this.GroupBox2.ResumeLayout(false);
+            this.GroupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -541,6 +557,7 @@
         private System.Windows.Forms.BindingSource bdsPM;
         private DSTableAdapters.PHIEUMUONTableAdapter PHIEUMUONTableAdapter;
         private System.Windows.Forms.BindingSource nHANVIENBindingSource;
+        private DevExpress.XtraEditors.GroupControl GroupBox2;
         private System.Windows.Forms.Button btnFindNV;
         private System.Windows.Forms.TextBox txtTimkiem;
         private System.Windows.Forms.DataGridViewTextBoxColumn gcc;
@@ -548,7 +565,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTENNV;
         private System.Windows.Forms.DataGridViewComboBoxColumn cmbColPhai;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDIENTHOAI;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }

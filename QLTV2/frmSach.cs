@@ -54,10 +54,16 @@ namespace QLTV2
                 btnXoa.Enabled = false;
             }
 
+            txtSotrang.KeyPress += ChiNhapSo_KeyPress;
+            txtLanxuatban.KeyPress += ChiNhapSo_KeyPress;
+            txtGia.KeyPress += ChiNhapSo_KeyPress;
+
             SetupTheLoaiComboBox();
             SetupNgonNguComboBox();
             this.gcDAUSACH.CellValueChanged += gcDAUSACH_CellValueChanged;
             this.gcDAUSACH.CellBeginEdit += gcDAUSACH_CellBeginEdit;
+            this.gcDAUSACH.CellValidating += gcDAUSACH_CellValidating;
+            this.gcDAUSACH.EditingControlShowing += gcDAUSACH_EditingControlShowing;
 
             SetupNganTuComboBox();
             SetupTinhTrangComboBox();
@@ -118,11 +124,15 @@ namespace QLTV2
             vitri = bdsDS.Position;
             GroupBox1.Enabled = true;
             gcDAUSACH.Enabled = gcSACH.Enabled = false;
+            dtpNSB.Value = DateTime.Now;
             bdsDS.AddNew();
 
             btnThem.Enabled = btnXoa.Enabled = GroupBox3.Enabled = btnThoat.Enabled = btnPhuchoi.Enabled = gcSACH.Enabled = contextMenuStrip1.Enabled = false;
             btnGhi.Enabled = btnReload.Enabled = true;
             txtISBN.Focus();
+
+            cmbMATL.SelectedIndex = 0;
+            cmbMANN.SelectedIndex = 0;
         }
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -150,14 +160,63 @@ namespace QLTV2
         {
             if (string.IsNullOrWhiteSpace(txtISBN.Text))
             {
-                MessageBox.Show("Họ nhân viên không được thiếu.");
+                MessageBox.Show("Mã đầu sách không được thiếu.");
                 txtISBN.Focus();
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtTensach.Text))
             {
-                MessageBox.Show("Tên nhân viên không được thiếu.");
+                MessageBox.Show("Tên sách không được thiếu.");
                 txtTensach.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtKhosach.Text))
+            {
+                MessageBox.Show("Kho sách không được thiếu.");
+                txtKhosach.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNoidung.Text))
+            {
+                MessageBox.Show("Nội dung không được thiếu.");
+                txtNoidung.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtHinh.Text))
+            {
+                MessageBox.Show("Hình ảnh không được thiếu.");
+                txtHinh.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtLanxuatban.Text))
+            {
+                MessageBox.Show("Lần xuất bản không được thiếu.");
+                txtLanxuatban.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtGia.Text))
+            {
+                MessageBox.Show("Giá không được thiếu.");
+                txtGia.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtSotrang.Text))
+            {
+                MessageBox.Show("Số trang không được thiếu.");
+                txtSotrang.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNhaXB.Text))
+            {
+                MessageBox.Show("Nhà xuất bản không được thiếu.");
+                txtNhaXB.Focus();
                 return;
             }
 
@@ -335,7 +394,12 @@ namespace QLTV2
 
             SACHTableAdapter.Fill(dS.SACH);
 
-            btnThem.Enabled = btnXoa.Enabled = btnThoat.Enabled = GroupBox3.Enabled = contextMenuStrip1.Enabled = true;
+            bdsDS.Filter = "";
+            bdsDS.RemoveFilter();
+            isFilterActive = false;
+            txtTimkiem.Clear();
+
+            btnThem.Enabled = btnXoa.Enabled = btnThoat.Enabled = GroupBox3.Enabled = contextMenuStrip1.Enabled = btnGhi.Enabled = true;
             GroupBox1.Enabled = GroupBox2.Enabled = false;
             gcDAUSACH.Enabled = gcSACH.Enabled = true;
 
@@ -372,10 +436,36 @@ namespace QLTV2
         }
         private void gcDAUSACH_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            var dgv = sender as DataGridView;
+            if (dgv == null || e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            DataGridViewRow row = dgv.Rows[e.RowIndex];
+            string dataProperty = dgv.Columns[e.ColumnIndex].DataPropertyName;
+            object value = row.Cells[e.ColumnIndex].Value;
+
+            string[] requiredColumns = {
+        "ISBN", "Tensach", "Khosach", "Noidung", "HinhAnhPath",
+        "Lanxuatban", "Sotrang", "Gia", "NXB", "MANGONNGU", "MaTL"
+    };
+
+            if (requiredColumns.Contains(dataProperty) && (value == null || string.IsNullOrWhiteSpace(value.ToString())))
+            {
+                MessageBox.Show($"{dataProperty} không được để trống.", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                if (undoStack.Count > 0 && undoStack.Peek().Action == "Edit")
+                {
+                    var lastEdit = undoStack.Peek();
+                    int columnIndex = dgv.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.DataPropertyName == dataProperty).Index;
+                    dgv.Rows[e.RowIndex].Cells[columnIndex].Value = lastEdit.ItemArray[columnIndex];
+                }
+
+                return; 
+            }
+
             try
             {
                 bdsDS.EndEdit();
-                MessageBox.Show("Cập nhật thành công");
+                //MessageBox.Show("Cập nhật thành công.");
             }
             catch (Exception ex)
             {
@@ -574,5 +664,58 @@ namespace QLTV2
             //cmbTinhTrang.DataBindings.Clear();
             //cmbTinhTrang.DataBindings.Add("SelectedValue", bdsSach, "TINHTRANG", true, DataSourceUpdateMode.OnPropertyChanged);
         }
+
+        private void ChiNhapSo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void gcDAUSACH_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            var dgv = sender as DataGridView;
+            if (dgv == null || e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            string dataProperty = dgv.Columns[e.ColumnIndex].DataPropertyName;
+
+            // Các cột chỉ cho nhập số
+            string[] numericColumns = { "Gia", "Sotrang", "Lanxuatban" };
+
+            if (numericColumns.Contains(dataProperty))
+            {
+                string input = e.FormattedValue?.ToString() ?? "";
+                if (!int.TryParse(input, out _)) // kiểm tra xem có phải số nguyên
+                {
+                    MessageBox.Show($"{dataProperty} chỉ được nhập số.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true; // hủy thay đổi
+                }
+            }
+        }
+        private void OnlyAllowDigits_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // chặn luôn khi nhập không phải số
+            }
+        }
+
+        private void gcDAUSACH_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            TextBox txt = e.Control as TextBox;
+            if (txt == null) return;
+
+            txt.KeyPress -= OnlyAllowDigits_KeyPress; // tránh đăng ký nhiều lần
+            int colIndex = gcDAUSACH.CurrentCell.ColumnIndex;
+            string dataProperty = gcDAUSACH.Columns[colIndex].DataPropertyName;
+
+            // Nếu là cột số thì gắn sự kiện chỉ cho nhập số
+            if (dataProperty == "Gia" || dataProperty == "Sotrang" || dataProperty == "Lanxuatban")
+            {
+                txt.KeyPress += OnlyAllowDigits_KeyPress;
+            }
+        }
+
+
     }
 }

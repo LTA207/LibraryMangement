@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label hINHTHUCLabel;
             System.Windows.Forms.Label nGAYMUONLabel;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mASACHLabel = new System.Windows.Forms.Label();
             this.mADGLabel = new System.Windows.Forms.Label();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
@@ -62,18 +63,18 @@
             this.btnXoasach = new System.Windows.Forms.Button();
             this.btnMuonsach = new System.Windows.Forms.Button();
             this.gcCT_PHIEUMUON = new System.Windows.Forms.DataGridView();
-            this.dOCGIATableAdapter1 = new QLTV2.DSTableAdapters.DOCGIATableAdapter();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbColMADG = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cmbColHT = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbMANVColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbColMaSach = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbColTinhTrang = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.cmbColTRA = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.cmbColMANVNS = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dOCGIATableAdapter1 = new QLTV2.DSTableAdapters.DOCGIATableAdapter();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbColMADG = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.cmbColHT = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbMANVColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             hINHTHUCLabel = new System.Windows.Forms.Label();
             nGAYMUONLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -318,7 +319,9 @@
             // 
             // dtpNgaymuon
             // 
+            this.dtpNgaymuon.CustomFormat = "dd/MM/yyyy";
             this.dtpNgaymuon.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bdsPM, "NGAYMUON", true));
+            this.dtpNgaymuon.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpNgaymuon.Location = new System.Drawing.Point(543, 50);
             this.dtpNgaymuon.Name = "dtpNgaymuon";
             this.dtpNgaymuon.Size = new System.Drawing.Size(200, 23);
@@ -327,6 +330,7 @@
             // cmbHinhthuc
             // 
             this.cmbHinhthuc.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsPM, "HINHTHUC", true));
+            this.cmbHinhthuc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbHinhthuc.FormattingEnabled = true;
             this.cmbHinhthuc.Location = new System.Drawing.Point(286, 52);
             this.cmbHinhthuc.Name = "cmbHinhthuc";
@@ -407,53 +411,6 @@
             this.gcCT_PHIEUMUON.Size = new System.Drawing.Size(586, 342);
             this.gcCT_PHIEUMUON.TabIndex = 14;
             // 
-            // dOCGIATableAdapter1
-            // 
-            this.dOCGIATableAdapter1.ClearBeforeFill = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MAPHIEU";
-            this.dataGridViewTextBoxColumn1.HeaderText = "MAPHIEU";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // cmbColMADG
-            // 
-            this.cmbColMADG.DataPropertyName = "MADG";
-            this.cmbColMADG.HeaderText = "MADG";
-            this.cmbColMADG.MinimumWidth = 6;
-            this.cmbColMADG.Name = "cmbColMADG";
-            this.cmbColMADG.ReadOnly = true;
-            this.cmbColMADG.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cmbColMADG.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // cmbColHT
-            // 
-            this.cmbColHT.DataPropertyName = "HINHTHUC";
-            this.cmbColHT.HeaderText = "HINHTHUC";
-            this.cmbColHT.MinimumWidth = 6;
-            this.cmbColHT.Name = "cmbColHT";
-            this.cmbColHT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "NGAYMUON";
-            this.dataGridViewTextBoxColumn3.HeaderText = "NGAYMUON";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // cmbMANVColumn
-            // 
-            this.cmbMANVColumn.DataPropertyName = "MANV";
-            this.cmbMANVColumn.HeaderText = "MANV";
-            this.cmbMANVColumn.MinimumWidth = 6;
-            this.cmbMANVColumn.Name = "cmbMANVColumn";
-            this.cmbMANVColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cmbMANVColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "MAPHIEU";
@@ -509,6 +466,56 @@
             this.cmbColMANVNS.Name = "cmbColMANVNS";
             this.cmbColMANVNS.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.cmbColMANVNS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // dOCGIATableAdapter1
+            // 
+            this.dOCGIATableAdapter1.ClearBeforeFill = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "MAPHIEU";
+            this.dataGridViewTextBoxColumn1.HeaderText = "MAPHIEU";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // cmbColMADG
+            // 
+            this.cmbColMADG.DataPropertyName = "MADG";
+            this.cmbColMADG.HeaderText = "MADG";
+            this.cmbColMADG.MinimumWidth = 6;
+            this.cmbColMADG.Name = "cmbColMADG";
+            this.cmbColMADG.ReadOnly = true;
+            this.cmbColMADG.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cmbColMADG.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // cmbColHT
+            // 
+            this.cmbColHT.DataPropertyName = "HINHTHUC";
+            this.cmbColHT.HeaderText = "HINHTHUC";
+            this.cmbColHT.MinimumWidth = 6;
+            this.cmbColHT.Name = "cmbColHT";
+            this.cmbColHT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "NGAYMUON";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewTextBoxColumn3.HeaderText = "NGAYMUON";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // cmbMANVColumn
+            // 
+            this.cmbMANVColumn.DataPropertyName = "MANV";
+            this.cmbMANVColumn.HeaderText = "MANV";
+            this.cmbMANVColumn.MinimumWidth = 6;
+            this.cmbMANVColumn.Name = "cmbMANVColumn";
+            this.cmbMANVColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cmbMANVColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // frmMuonsach
             // 
@@ -581,16 +588,16 @@
         private System.Windows.Forms.Label mADGLabel;
         private System.Windows.Forms.BindingSource dOCGIABindingSource;
         private DSTableAdapters.DOCGIATableAdapter dOCGIATableAdapter1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewComboBoxColumn cmbColMADG;
-        private System.Windows.Forms.DataGridViewComboBoxColumn cmbColHT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewComboBoxColumn cmbMANVColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewComboBoxColumn cmbColMaSach;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewComboBoxColumn cmbColTinhTrang;
         private System.Windows.Forms.DataGridViewComboBoxColumn cmbColTRA;
         private System.Windows.Forms.DataGridViewComboBoxColumn cmbColMANVNS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn cmbColMADG;
+        private System.Windows.Forms.DataGridViewComboBoxColumn cmbColHT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewComboBoxColumn cmbMANVColumn;
     }
 }

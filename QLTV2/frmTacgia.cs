@@ -72,6 +72,7 @@ namespace QLTV2
             txtHoten.KeyPress += OnlyAllowLetters_KeyPress;
             this.gcTG.EditingControlShowing += gcTG_EditingControlShowing;
             this.gcTG.CellValidating += gcTG_CellValidating;
+            txtPhone.KeyPress += OnlyAllowDigits_KeyPress;
 
         }
 
@@ -325,24 +326,24 @@ namespace QLTV2
         }
         private void gcTG_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (gcTG.CurrentCell.ColumnIndex == colHOTENTG.Index)
+            TextBox tb = e.Control as TextBox;
+            if (tb != null)
             {
-                TextBox tb = e.Control as TextBox;
-                if (tb != null)
+                // Bỏ gán trước
+                tb.KeyPress -= OnlyAllowLetters_KeyPress;
+                tb.KeyPress -= OnlyAllowDigits_KeyPress;
+
+                if (gcTG.CurrentCell.ColumnIndex == colHOTENTG.Index)
                 {
-                    tb.KeyPress -= OnlyAllowLetters_KeyPress;
                     tb.KeyPress += OnlyAllowLetters_KeyPress;
                 }
-            }
-            else
-            {
-                TextBox tb = e.Control as TextBox;
-                if (tb != null)
+                else if (gcTG.CurrentCell.ColumnIndex == colDIENTHOAIDG.Index)
                 {
-                    tb.KeyPress -= OnlyAllowLetters_KeyPress;
+                    tb.KeyPress += OnlyAllowDigits_KeyPress;
                 }
             }
         }
+
         private void gcTG_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             // Kiểm tra cột Họ hoặc Tên
@@ -357,5 +358,27 @@ namespace QLTV2
                 }
             }
         }
+        private void OnlyAllowDigits_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            if (tb.Text.Length >= 11 && tb.SelectionLength == 0)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+
     }
 }

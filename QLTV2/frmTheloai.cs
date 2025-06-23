@@ -72,6 +72,15 @@ namespace QLTV2
             }
             this.gcTL.CellValueChanged += gcTHELOAI_CellValueChanged;
             this.gcTL.CellBeginEdit += gcTHELOAI_CellBeginEdit;
+            
+            if(undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }    
         }
 
         private void gcTHELOAI_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -113,6 +122,15 @@ namespace QLTV2
                     return;
                 }
             }
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -162,6 +180,15 @@ namespace QLTV2
             btnGhi.Enabled = btnPhuchoi.Enabled = GroupBox1.Enabled = true;
             btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = true;
             gcTL.Enabled = true;
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+
         }
         private void btnPhuchoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -222,6 +249,15 @@ namespace QLTV2
             {
                 MessageBox.Show("Không có thao tác nào để phục hồi.");
             }
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -247,6 +283,19 @@ namespace QLTV2
             btnThem.Enabled = btnXoa.Enabled = btnTimkiem.Enabled = btnThoat.Enabled = true;
             GroupBox1.Enabled = false;
             gcTL.Enabled = true;
+
+            bdsTL.RemoveFilter();   
+            txtTimkiem.Text = "";     
+            isFilterActive = false;
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+
         }
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -263,6 +312,15 @@ namespace QLTV2
             {
                 MessageBox.Show("Lỗi khi cập nhật: " + ex.Message);
             }
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+
         }
 
         private void btnFindTL_Click(object sender, EventArgs e)
@@ -289,6 +347,15 @@ namespace QLTV2
                 MessageBox.Show("Không tìm thấy nhân viên nào phù hợp.");
                 bdsTL.Filter = "";
             }
+            if (undoStack.Count == 0)
+            {
+                btnPhuchoi.Enabled = false;
+            }
+            else
+            {
+                btnPhuchoi.Enabled = true;
+            }
+
         }
     }
 }

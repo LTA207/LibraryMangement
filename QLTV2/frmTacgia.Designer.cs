@@ -57,9 +57,6 @@
             this.TACGIA_SACHTableAdapter = new QLTV2.DSTableAdapters.TACGIA_SACHTableAdapter();
             this.gcTG = new System.Windows.Forms.DataGridView();
             this.GroupBox1 = new DevExpress.XtraEditors.GroupControl();
-            this.btnFind = new System.Windows.Forms.Button();
-            this.txtTimKiem = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtDiachi = new System.Windows.Forms.TextBox();
             this.txtHoten = new System.Windows.Forms.TextBox();
@@ -67,10 +64,14 @@
             this.gcTG_SACH = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btnFind = new System.Windows.Forms.Button();
+            this.txtTimKiem = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHOTENTG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDIENTHOAIDG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             hOTENTGLabel = new System.Windows.Forms.Label();
             dIACHITGLabel = new System.Windows.Forms.Label();
             dIENTHOAITGLabel = new System.Windows.Forms.Label();
@@ -83,12 +84,14 @@
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsTG_SACH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcTG_SACH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // hOTENTGLabel
             // 
             hOTENTGLabel.AutoSize = true;
-            hOTENTGLabel.Location = new System.Drawing.Point(21, 51);
+            hOTENTGLabel.Location = new System.Drawing.Point(51, 129);
             hOTENTGLabel.Name = "hOTENTGLabel";
             hOTENTGLabel.Size = new System.Drawing.Size(68, 16);
             hOTENTGLabel.TabIndex = 0;
@@ -97,7 +100,7 @@
             // dIACHITGLabel
             // 
             dIACHITGLabel.AutoSize = true;
-            dIACHITGLabel.Location = new System.Drawing.Point(253, 82);
+            dIACHITGLabel.Location = new System.Drawing.Point(542, 126);
             dIACHITGLabel.Name = "dIACHITGLabel";
             dIACHITGLabel.Size = new System.Drawing.Size(68, 16);
             dIACHITGLabel.TabIndex = 2;
@@ -106,7 +109,7 @@
             // dIENTHOAITGLabel
             // 
             dIENTHOAITGLabel.AutoSize = true;
-            dIENTHOAITGLabel.Location = new System.Drawing.Point(23, 133);
+            dIENTHOAITGLabel.Location = new System.Drawing.Point(263, 126);
             dIENTHOAITGLabel.Name = "dIENTHOAITGLabel";
             dIENTHOAITGLabel.Size = new System.Drawing.Size(92, 16);
             dIENTHOAITGLabel.TabIndex = 4;
@@ -323,7 +326,7 @@
             this.dataGridViewTextBoxColumn1,
             this.colHOTENTG,
             this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7});
+            this.colDIENTHOAIDG});
             this.gcTG.DataSource = this.bdsTG;
             this.gcTG.Dock = System.Windows.Forms.DockStyle.Top;
             this.gcTG.Location = new System.Drawing.Point(0, 25);
@@ -335,52 +338,23 @@
             // 
             // GroupBox1
             // 
-            this.GroupBox1.Controls.Add(this.btnFind);
-            this.GroupBox1.Controls.Add(this.txtTimKiem);
-            this.GroupBox1.Controls.Add(this.label1);
             this.GroupBox1.Controls.Add(dIENTHOAITGLabel);
             this.GroupBox1.Controls.Add(this.txtPhone);
             this.GroupBox1.Controls.Add(dIACHITGLabel);
             this.GroupBox1.Controls.Add(this.txtDiachi);
             this.GroupBox1.Controls.Add(hOTENTGLabel);
             this.GroupBox1.Controls.Add(this.txtHoten);
-            this.GroupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.GroupBox1.Location = new System.Drawing.Point(0, 245);
+            this.GroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GroupBox1.Location = new System.Drawing.Point(0, 386);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(504, 381);
+            this.GroupBox1.Size = new System.Drawing.Size(1062, 240);
             this.GroupBox1.TabIndex = 20;
             this.GroupBox1.Text = "groupControl1";
-            // 
-            // btnFind
-            // 
-            this.btnFind.Location = new System.Drawing.Point(227, 268);
-            this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(75, 23);
-            this.btnFind.TabIndex = 8;
-            this.btnFind.Text = "Tìm Kiếm";
-            this.btnFind.UseVisualStyleBackColor = true;
-            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
-            // 
-            // txtTimKiem
-            // 
-            this.txtTimKiem.Location = new System.Drawing.Point(121, 216);
-            this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(306, 23);
-            this.txtTimKiem.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 216);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Tìm kiếm";
             // 
             // txtPhone
             // 
             this.txtPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsTG, "DIENTHOAITG", true));
-            this.txtPhone.Location = new System.Drawing.Point(121, 130);
+            this.txtPhone.Location = new System.Drawing.Point(361, 123);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(100, 23);
             this.txtPhone.TabIndex = 5;
@@ -388,7 +362,7 @@
             // txtDiachi
             // 
             this.txtDiachi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsTG, "DIACHITG", true));
-            this.txtDiachi.Location = new System.Drawing.Point(327, 79);
+            this.txtDiachi.Location = new System.Drawing.Point(616, 123);
             this.txtDiachi.Name = "txtDiachi";
             this.txtDiachi.Size = new System.Drawing.Size(100, 23);
             this.txtDiachi.TabIndex = 3;
@@ -396,7 +370,7 @@
             // txtHoten
             // 
             this.txtHoten.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsTG, "HOTENTG", true));
-            this.txtHoten.Location = new System.Drawing.Point(95, 48);
+            this.txtHoten.Location = new System.Drawing.Point(125, 126);
             this.txtHoten.Name = "txtHoten";
             this.txtHoten.Size = new System.Drawing.Size(100, 23);
             this.txtHoten.TabIndex = 1;
@@ -417,11 +391,11 @@
             this.dataGridViewTextBoxColumn9});
             this.gcTG_SACH.DataSource = this.bdsTG_SACH;
             this.gcTG_SACH.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcTG_SACH.Location = new System.Drawing.Point(504, 245);
+            this.gcTG_SACH.Location = new System.Drawing.Point(440, 245);
             this.gcTG_SACH.Name = "gcTG_SACH";
             this.gcTG_SACH.RowHeadersWidth = 51;
             this.gcTG_SACH.RowTemplate.Height = 24;
-            this.gcTG_SACH.Size = new System.Drawing.Size(558, 381);
+            this.gcTG_SACH.Size = new System.Drawing.Size(622, 141);
             this.gcTG_SACH.TabIndex = 20;
             // 
             // dataGridViewTextBoxColumn8
@@ -439,6 +413,44 @@
             this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.Width = 125;
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.btnFind);
+            this.groupControl1.Controls.Add(this.txtTimKiem);
+            this.groupControl1.Controls.Add(this.label1);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupControl1.Location = new System.Drawing.Point(0, 245);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(440, 141);
+            this.groupControl1.TabIndex = 29;
+            this.groupControl1.Text = "groupControl1";
+            // 
+            // btnFind
+            // 
+            this.btnFind.Location = new System.Drawing.Point(203, 96);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(75, 23);
+            this.btnFind.TabIndex = 11;
+            this.btnFind.Text = "Tìm Kiếm";
+            this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
+            // 
+            // txtTimKiem
+            // 
+            this.txtTimKiem.Location = new System.Drawing.Point(97, 44);
+            this.txtTimKiem.Name = "txtTimKiem";
+            this.txtTimKiem.Size = new System.Drawing.Size(306, 23);
+            this.txtTimKiem.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 16);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Tìm kiếm";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -462,12 +474,12 @@
             this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
-            // dataGridViewTextBoxColumn7
+            // colDIENTHOAIDG
             // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "DIENTHOAITG";
-            this.dataGridViewTextBoxColumn7.HeaderText = "DIENTHOAITG";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.colDIENTHOAIDG.DataPropertyName = "DIENTHOAITG";
+            this.colDIENTHOAIDG.HeaderText = "DIENTHOAITG";
+            this.colDIENTHOAIDG.MinimumWidth = 6;
+            this.colDIENTHOAIDG.Name = "colDIENTHOAIDG";
             // 
             // frmTacgia
             // 
@@ -475,8 +487,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 626);
             this.Controls.Add(this.gcTG_SACH);
-            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.gcTG);
+            this.Controls.Add(this.GroupBox1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -501,6 +514,9 @@
             this.GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsTG_SACH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcTG_SACH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,12 +559,13 @@
         private System.Windows.Forms.DataGridView gcTG_SACH;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtTimKiem;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
         private System.Windows.Forms.Button btnFind;
+        private System.Windows.Forms.TextBox txtTimKiem;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHOTENTG;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDIENTHOAIDG;
     }
 }

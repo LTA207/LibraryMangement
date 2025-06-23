@@ -78,6 +78,7 @@ namespace QLTV2
             txtTENDG.KeyPress += OnlyAllowLetters_KeyPress;
             this.gcDG.EditingControlShowing += gcDG_EditingControlShowing;
             this.gcDG.CellValidating += gcDG_CellValidating;
+            txtPHONE.KeyPress += OnlyAllowDigits_KeyPress;
 
             GroupBox1.Enabled = false;
             if (undoStack.Count == 0) btnPhuchoi.Enabled = false;
@@ -528,6 +529,27 @@ namespace QLTV2
                     tb.KeyPress -= OnlyAllowLetters_KeyPress;
                 }
             }
+
+            if (gcDG.CurrentCell.ColumnIndex == colNgayLamThe.Index ||
+                gcDG.CurrentCell.ColumnIndex == colNgayHetHan.Index ||
+                gcDG.CurrentCell.ColumnIndex == colNgaySinh.Index)
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress -= OnlyAllowDigitsAndDateSeparators_KeyPress;
+                    tb.KeyPress += OnlyAllowDigitsAndDateSeparators_KeyPress;
+                }
+            }
+            if (gcDG.CurrentCell.ColumnIndex == colPhone.Index)
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress -= OnlyAllowDigits_KeyPress; // tránh trùng sự kiện
+                    tb.KeyPress += OnlyAllowDigits_KeyPress;
+                }
+            }
         }
         private void gcDG_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -647,6 +669,37 @@ namespace QLTV2
                 }
             }
             return false;
+        }
+        private void OnlyAllowDigitsAndDateSeparators_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && e.KeyChar != '-')
+            {
+                e.Handled = true;
+            }
+        }
+        private void OnlyAllowDigits_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            // Giới hạn độ dài tối đa 11 số
+            if (tb.Text.Length >= 11 && tb.SelectionLength == 0)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
     }
