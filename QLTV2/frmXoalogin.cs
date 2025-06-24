@@ -11,14 +11,12 @@ using System.Windows.Forms;
 
 namespace QLTV2
 {
-    public partial class frmDoiPass: Form
+    public partial class frmXoalogin: Form
     {
-        public frmDoiPass()
+        public frmXoalogin()
         {
             InitializeComponent();
             setUpRole();
-            txtPass.KeyPress += txtPassword_KeyPress;
-            txtPassValid.KeyPress += txtPassword_KeyPress;
         }
         private void setUpRole()
         {
@@ -86,35 +84,45 @@ namespace QLTV2
 
         private void LoadNhanVienDaTaoTK()
         {
-            // Tạo kết nối đến cơ sở dữ liệu
             using (SqlConnection conn = new SqlConnection(Program.connstr))
             {
-                // Mở kết nối
                 conn.Open();
 
-                // Tạo Command để gọi stored procedure
                 using (SqlCommand cmd = new SqlCommand("LayNhanVienDaTaoTK", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    // Tạo DataAdapter và DataTable để lưu trữ dữ liệu
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         DataTable dt = new DataTable();
                         da.Fill(dt);
 
-                        // Thêm cột mới để gộp Họ, Tên và Mã Độc Giả
+                        var rowsToRemove = dt.AsEnumerable()
+                            .Where(r => r["MANV"].ToString() == Program.mId)
+                            .ToList();
+
+                        foreach (var row in rowsToRemove)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+
+                        if (dt.Rows.Count == 0)
+                        {
+                            cmbUser.DataSource = null;
+                            cmbUser.Items.Clear();
+                            cmbUser.Enabled = false;
+                            return;
+                        }
+
                         dt.Columns.Add("HienThi", typeof(string));
                         foreach (DataRow row in dt.Rows)
                         {
                             row["HienThi"] = $"{row["HONV"]} {row["TENNV"]} - {row["MANV"]}";
                         }
 
-                        // Gán DataSource cho cmbUser
                         cmbUser.DataSource = dt;
-                        cmbUser.DisplayMember = "HienThi";  // Cột mới để hiển thị
-                        cmbUser.ValueMember = "MANV";        // Giá trị thực sự sẽ là MADG
-
+                        cmbUser.DisplayMember = "HienThi";
+                        cmbUser.ValueMember = "MANV";
                         cmbUser.Enabled = true;
                     }
                 }
@@ -125,79 +133,6 @@ namespace QLTV2
         private void btnThoat_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void btnXacNhan_Click(object sender, EventArgs e)
-        {
-            // 1. Kiểm tra xem có user được chọn chưa
-            if (cmbUser.SelectedItem == null)
-            {
-                MessageBox.Show("Vui lòng chọn người dùng cần đổi mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // 2. Lấy thông tin mật khẩu
-            string newPass = txtPass.Text.Trim();
-            string confirmPass = txtPassValid.Text.Trim();
-
-            // 3. Kiểm tra mật khẩu rỗng
-            if (string.IsNullOrEmpty(newPass))
-            {
-                MessageBox.Show("Vui lòng nhập mật khẩu mới!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(confirmPass))
-            {
-                MessageBox.Show("Vui lòng xác nhận lại mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // 4. Kiểm tra mật khẩu nhập lại có khớp không
-            if (newPass != confirmPass)
-            {
-                MessageBox.Show("Mật khẩu xác nhận không khớp!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // 5. Lấy login name để thực hiện đổi mật khẩu
-            string rolePrefix = cmbRole.SelectedValue.ToString(); // "dg" hoặc "ad"
-            string userCode = cmbUser.SelectedValue.ToString();   // MADG hoặc MANV
-
-            string userName = $"{rolePrefix}{userCode}";
-            string loginName = LayLoginNameTuUser(userName);
-
-            // 6. Tạo câu lệnh đổi mật khẩu (ALTER LOGIN)
-            string sql = $"ALTER LOGIN [{loginName}] WITH PASSWORD = '{newPass}'";
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(Program.connstr))
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.ExecuteNonQuery();
-                    SqlConnection.ClearAllPools();
-                    MessageBox.Show("Đổi mật khẩu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (userName == Program.username)
-                    {
-                        MessageBox.Show("Bạn vừa đổi mật khẩu của chính mình. Vui lòng đăng nhập lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                        foreach (Form f in Application.OpenForms)
-                        {
-                            if (f is MainMenu || f is RibbonForm1)  // tên form chính
-                            {
-                                f.Close();
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi đổi mật khẩu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
         private string LayLoginNameTuUser(string userName)
         {
@@ -224,15 +159,85 @@ namespace QLTV2
 
             return loginName;
         }
-        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void btnXoaLogin_Click(object sender, EventArgs e)
         {
-            if (e.KeyChar == ' ')
+            if (cmbUser.SelectedItem == null)
             {
-                e.Handled = true;
-                //MessageBox.Show("Không được nhập dấu cách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn người dùng cần xóa login!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string rolePrefix = cmbRole.SelectedValue.ToString(); // "dg" hoặc "ad"
+            string userCode = cmbUser.SelectedValue.ToString();   // MADG hoặc MANV
+            string userName = $"{rolePrefix}{userCode}";
+            string loginName = LayLoginNameTuUser(userName);
+
+            if (loginName == null)
+            {
+                MessageBox.Show("Không tìm thấy login tương ứng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var confirm = MessageBox.Show(
+                $"Bạn có chắc muốn xóa login '{loginName}' và user '{userName}' không?\nThao tác này không thể hoàn tác!",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirm != DialogResult.Yes) return;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Program.connstr))
+                {
+                    conn.Open();
+
+                    // 1. Kill session nếu đang đăng nhập
+                    string killSessionSql = @"
+                DECLARE @sql NVARCHAR(MAX) = '';
+                SELECT @sql += 'KILL ' + CAST(session_id AS VARCHAR) + ';'
+                FROM sys.dm_exec_sessions
+                WHERE login_name = @loginName;
+                EXEC (@sql);
+            ";
+
+                    using (SqlCommand killCmd = new SqlCommand(killSessionSql, conn))
+                    {
+                        killCmd.Parameters.AddWithValue("@loginName", loginName);
+                        killCmd.ExecuteNonQuery();
+                    }
+
+                    // 2. Xóa USER khỏi database hiện tại
+                    string dropUserSql = $"USE {conn.Database}; DROP USER [{userName}];";
+                    using (SqlCommand dropUserCmd = new SqlCommand(dropUserSql, conn))
+                    {
+                        dropUserCmd.ExecuteNonQuery();
+                    }
+
+                    // 3. Xóa LOGIN khỏi server
+                    string dropLoginSql = $"DROP LOGIN [{loginName}];";
+                    using (SqlCommand dropLoginCmd = new SqlCommand(dropLoginSql, conn))
+                    {
+                        dropLoginCmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show($"Đã xóa login '{loginName}' và user '{userName}' thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (rolePrefix == "dg")
+                    {
+                        LoadDocGiaDaTaoTK();
+                    }
+                    else
+                    {
+                        LoadNhanVienDaTaoTK();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa login/user: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
     }
 }

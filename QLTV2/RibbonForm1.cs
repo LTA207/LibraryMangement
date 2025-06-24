@@ -226,5 +226,17 @@ namespace QLTV2
                 f.Show();
             }
         }
+
+        private void btnXoalogin_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmXoalogin));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmXoalogin f = new frmXoalogin();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }

@@ -1776,48 +1776,48 @@ GROUP BY
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TRACUUSACH" msprop:Generator_RowEvHandlerName="TRACUUSACHRowChangeEventHandler" msprop:Generator_RowDeletedName="TRACUUSACHRowDeleted" msprop:Generator_RowDeletingName="TRACUUSACHRowDeleting" msprop:Generator_RowEvArgName="TRACUUSACHRowChangeEvent" msprop:Generator_TablePropName="TRACUUSACH" msprop:Generator_RowChangedName="TRACUUSACHRowChanged" msprop:Generator_RowChangingName="TRACUUSACHRowChanging" msprop:Generator_TableClassName="TRACUUSACHDataTable" msprop:Generator_RowClassName="TRACUUSACHRow" msprop:Generator_TableVarName="tableTRACUUSACH" msprop:Generator_UserTableName="TRACUUSACH">
+        <xs:element name="TRACUUSACH" msprop:Generator_RowClassName="TRACUUSACHRow" msprop:Generator_RowEvHandlerName="TRACUUSACHRowChangeEventHandler" msprop:Generator_RowDeletedName="TRACUUSACHRowDeleted" msprop:Generator_RowDeletingName="TRACUUSACHRowDeleting" msprop:Generator_RowEvArgName="TRACUUSACHRowChangeEvent" msprop:Generator_TablePropName="TRACUUSACH" msprop:Generator_RowChangedName="TRACUUSACHRowChanged" msprop:Generator_UserTableName="TRACUUSACH" msprop:Generator_RowChangingName="TRACUUSACHRowChanging" msprop:Generator_TableClassName="TRACUUSACHDataTable" msprop:Generator_TableVarName="tableTRACUUSACH">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ISBN" msprop:Generator_ColumnPropNameInRow="ISBN" msprop:Generator_ColumnPropNameInTable="ISBNColumn" msprop:Generator_ColumnVarNameInTable="columnISBN" msprop:Generator_UserColumnName="ISBN">
+              <xs:element name="ISBN" msprop:Generator_UserColumnName="ISBN" msprop:Generator_ColumnPropNameInTable="ISBNColumn" msprop:Generator_ColumnPropNameInRow="ISBN" msprop:Generator_ColumnVarNameInTable="columnISBN">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="15" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TENSACH" msprop:Generator_ColumnPropNameInRow="TENSACH" msprop:Generator_ColumnPropNameInTable="TENSACHColumn" msprop:Generator_ColumnVarNameInTable="columnTENSACH" msprop:Generator_UserColumnName="TENSACH">
+              <xs:element name="TENSACH" msprop:Generator_UserColumnName="TENSACH" msprop:Generator_ColumnPropNameInTable="TENSACHColumn" msprop:Generator_ColumnPropNameInRow="TENSACH" msprop:Generator_ColumnVarNameInTable="columnTENSACH">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TacGia" msprop:Generator_ColumnPropNameInRow="TacGia" msprop:Generator_ColumnPropNameInTable="TacGiaColumn" msprop:Generator_ColumnVarNameInTable="columnTacGia" msprop:Generator_UserColumnName="TacGia" minOccurs="0">
+              <xs:element name="TacGia" msprop:Generator_UserColumnName="TacGia" msprop:Generator_ColumnPropNameInTable="TacGiaColumn" msprop:Generator_ColumnPropNameInRow="TacGia" msprop:Generator_ColumnVarNameInTable="columnTacGia" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="NGONNGU" msprop:Generator_ColumnPropNameInRow="NGONNGU" msprop:Generator_ColumnPropNameInTable="NGONNGUColumn" msprop:Generator_ColumnVarNameInTable="columnNGONNGU" msprop:Generator_UserColumnName="NGONNGU" minOccurs="0">
+              <xs:element name="NGONNGU" msprop:Generator_UserColumnName="NGONNGU" msprop:Generator_ColumnPropNameInTable="NGONNGUColumn" msprop:Generator_ColumnPropNameInRow="NGONNGU" msprop:Generator_ColumnVarNameInTable="columnNGONNGU" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="THELOAI" msprop:Generator_ColumnPropNameInRow="THELOAI" msprop:Generator_ColumnPropNameInTable="THELOAIColumn" msprop:Generator_ColumnVarNameInTable="columnTHELOAI" msprop:Generator_UserColumnName="THELOAI" minOccurs="0">
+              <xs:element name="THELOAI" msprop:Generator_UserColumnName="THELOAI" msprop:Generator_ColumnPropNameInTable="THELOAIColumn" msprop:Generator_ColumnPropNameInRow="THELOAI" msprop:Generator_ColumnVarNameInTable="columnTHELOAI" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="SOTRANG" msprop:Generator_ColumnPropNameInRow="SOTRANG" msprop:Generator_ColumnPropNameInTable="SOTRANGColumn" msprop:Generator_ColumnVarNameInTable="columnSOTRANG" msprop:Generator_UserColumnName="SOTRANG" type="xs:int" minOccurs="0" />
-              <xs:element name="NGAYXUATBAN" msprop:Generator_ColumnPropNameInRow="NGAYXUATBAN" msprop:Generator_ColumnPropNameInTable="NGAYXUATBANColumn" msprop:Generator_ColumnVarNameInTable="columnNGAYXUATBAN" msprop:Generator_UserColumnName="NGAYXUATBAN" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="TongSoCuon" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="TongSoCuon" msprop:Generator_ColumnPropNameInTable="TongSoCuonColumn" msprop:Generator_ColumnVarNameInTable="columnTongSoCuon" msprop:Generator_UserColumnName="TongSoCuon" type="xs:int" minOccurs="0" />
-              <xs:element name="SoLuongCon" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="SoLuongCon" msprop:Generator_ColumnPropNameInTable="SoLuongConColumn" msprop:Generator_ColumnVarNameInTable="columnSoLuongCon" msprop:Generator_UserColumnName="SoLuongCon" type="xs:int" minOccurs="0" />
+              <xs:element name="SOTRANG" msprop:Generator_UserColumnName="SOTRANG" msprop:Generator_ColumnPropNameInTable="SOTRANGColumn" msprop:Generator_ColumnPropNameInRow="SOTRANG" msprop:Generator_ColumnVarNameInTable="columnSOTRANG" type="xs:int" minOccurs="0" />
+              <xs:element name="NGAYXUATBAN" msprop:Generator_UserColumnName="NGAYXUATBAN" msprop:Generator_ColumnPropNameInTable="NGAYXUATBANColumn" msprop:Generator_ColumnPropNameInRow="NGAYXUATBAN" msprop:Generator_ColumnVarNameInTable="columnNGAYXUATBAN" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TongSoCuon" msdata:ReadOnly="true" msprop:Generator_UserColumnName="TongSoCuon" msprop:Generator_ColumnPropNameInTable="TongSoCuonColumn" msprop:Generator_ColumnPropNameInRow="TongSoCuon" msprop:Generator_ColumnVarNameInTable="columnTongSoCuon" type="xs:int" minOccurs="0" />
+              <xs:element name="SoLuongCon" msdata:ReadOnly="true" msprop:Generator_UserColumnName="SoLuongCon" msprop:Generator_ColumnPropNameInTable="SoLuongConColumn" msprop:Generator_ColumnPropNameInRow="SoLuongCon" msprop:Generator_ColumnVarNameInTable="columnSoLuongCon" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1901,49 +1901,49 @@ GROUP BY
       <xs:selector xpath=".//mstns:TRACUUSACH" />
       <xs:field xpath="mstns:ISBN" />
     </xs:unique>
-    <xs:keyref name="FK__TACGIA_SAC__ISBN__36B12243" refer="DAUSACH_Constraint1" msprop:rel_Generator_UserParentTable="DAUSACH" msprop:rel_Generator_UserChildTable="TACGIA_SACH" msprop:rel_Generator_RelationVarName="relationFK__TACGIA_SAC__ISBN__36B12243" msprop:rel_Generator_ChildPropName="GetTACGIA_SACHRows" msprop:rel_Generator_UserRelationName="FK__TACGIA_SAC__ISBN__36B12243" msprop:rel_Generator_ParentPropName="DAUSACHRow" msdata:DeleteRule="None">
-      <xs:selector xpath=".//mstns:TACGIA_SACH" />
-      <xs:field xpath="mstns:ISBN" />
-    </xs:keyref>
-    <xs:keyref name="FK__TACGIA_SA__MATAC__35BCFE0A" refer="TACGIA_Constraint1" msprop:rel_Generator_UserParentTable="TACGIA" msprop:rel_Generator_UserChildTable="TACGIA_SACH" msprop:rel_Generator_RelationVarName="relationFK__TACGIA_SA__MATAC__35BCFE0A" msprop:rel_Generator_ChildPropName="GetTACGIA_SACHRows" msprop:rel_Generator_UserRelationName="FK__TACGIA_SA__MATAC__35BCFE0A" msprop:rel_Generator_ParentPropName="TACGIARow" msdata:DeleteRule="None">
+    <xs:keyref name="FK__TACGIA_SA__MATAC__35BCFE0A" refer="TACGIA_Constraint1" msprop:rel_Generator_UserParentTable="TACGIA" msprop:rel_Generator_UserChildTable="TACGIA_SACH" msprop:rel_Generator_RelationVarName="relationFK__TACGIA_SA__MATAC__35BCFE0A" msprop:rel_Generator_ChildPropName="GetTACGIA_SACHRows" msprop:rel_Generator_ParentPropName="TACGIARow" msprop:rel_Generator_UserRelationName="FK__TACGIA_SA__MATAC__35BCFE0A" msdata:DeleteRule="None">
       <xs:selector xpath=".//mstns:TACGIA_SACH" />
       <xs:field xpath="mstns:MATACGIA" />
     </xs:keyref>
-    <xs:keyref name="FK__SACH__ISBN__31EC6D26" refer="DAUSACH_Constraint1" msprop:rel_Generator_UserParentTable="DAUSACH" msprop:rel_Generator_UserChildTable="SACH" msprop:rel_Generator_RelationVarName="relationFK__SACH__ISBN__31EC6D26" msprop:rel_Generator_ChildPropName="GetSACHRows" msprop:rel_Generator_UserRelationName="FK__SACH__ISBN__31EC6D26" msprop:rel_Generator_ParentPropName="DAUSACHRow" msdata:DeleteRule="None">
-      <xs:selector xpath=".//mstns:SACH" />
+    <xs:keyref name="FK__TACGIA_SAC__ISBN__36B12243" refer="DAUSACH_Constraint1" msprop:rel_Generator_UserParentTable="DAUSACH" msprop:rel_Generator_UserChildTable="TACGIA_SACH" msprop:rel_Generator_RelationVarName="relationFK__TACGIA_SAC__ISBN__36B12243" msprop:rel_Generator_ChildPropName="GetTACGIA_SACHRows" msprop:rel_Generator_ParentPropName="DAUSACHRow" msprop:rel_Generator_UserRelationName="FK__TACGIA_SAC__ISBN__36B12243" msdata:DeleteRule="None">
+      <xs:selector xpath=".//mstns:TACGIA_SACH" />
       <xs:field xpath="mstns:ISBN" />
     </xs:keyref>
-    <xs:keyref name="FK__SACH__MANGANTU__32E0915F" refer="NGANTU_Constraint1" msprop:rel_Generator_UserParentTable="NGANTU" msprop:rel_Generator_UserChildTable="SACH" msprop:rel_Generator_RelationVarName="relationFK__SACH__MANGANTU__32E0915F" msprop:rel_Generator_ChildPropName="GetSACHRows" msprop:rel_Generator_UserRelationName="FK__SACH__MANGANTU__32E0915F" msprop:rel_Generator_ParentPropName="NGANTURow" msdata:DeleteRule="None">
+    <xs:keyref name="FK__SACH__MANGANTU__32E0915F" refer="NGANTU_Constraint1" msprop:rel_Generator_UserParentTable="NGANTU" msprop:rel_Generator_UserChildTable="SACH" msprop:rel_Generator_RelationVarName="relationFK__SACH__MANGANTU__32E0915F" msprop:rel_Generator_ChildPropName="GetSACHRows" msprop:rel_Generator_ParentPropName="NGANTURow" msprop:rel_Generator_UserRelationName="FK__SACH__MANGANTU__32E0915F" msdata:DeleteRule="None">
       <xs:selector xpath=".//mstns:SACH" />
       <xs:field xpath="mstns:MANGANTU" />
     </xs:keyref>
-    <xs:keyref name="FK__PHIEUMUON__MANV__3F466844" refer="NHANVIEN_Constraint1" msprop:rel_Generator_UserParentTable="NHANVIEN" msprop:rel_Generator_UserChildTable="PHIEUMUON" msprop:rel_Generator_RelationVarName="relationFK__PHIEUMUON__MANV__3F466844" msprop:rel_Generator_ChildPropName="GetPHIEUMUONRows" msprop:rel_Generator_UserRelationName="FK__PHIEUMUON__MANV__3F466844" msprop:rel_Generator_ParentPropName="NHANVIENRow" msdata:DeleteRule="None">
-      <xs:selector xpath=".//mstns:PHIEUMUON" />
-      <xs:field xpath="mstns:MANV" />
+    <xs:keyref name="FK__SACH__ISBN__31EC6D26" refer="DAUSACH_Constraint1" msprop:rel_Generator_UserParentTable="DAUSACH" msprop:rel_Generator_UserChildTable="SACH" msprop:rel_Generator_RelationVarName="relationFK__SACH__ISBN__31EC6D26" msprop:rel_Generator_ChildPropName="GetSACHRows" msprop:rel_Generator_ParentPropName="DAUSACHRow" msprop:rel_Generator_UserRelationName="FK__SACH__ISBN__31EC6D26" msdata:DeleteRule="None">
+      <xs:selector xpath=".//mstns:SACH" />
+      <xs:field xpath="mstns:ISBN" />
     </xs:keyref>
-    <xs:keyref name="FK__PHIEUMUON__MADG__3E52440B" refer="DOCGIA_Constraint1" msprop:rel_Generator_UserParentTable="DOCGIA" msprop:rel_Generator_UserChildTable="PHIEUMUON" msprop:rel_Generator_RelationVarName="relationFK__PHIEUMUON__MADG__3E52440B" msprop:rel_Generator_ChildPropName="GetPHIEUMUONRows" msprop:rel_Generator_UserRelationName="FK__PHIEUMUON__MADG__3E52440B" msprop:rel_Generator_ParentPropName="DOCGIARow" msdata:DeleteRule="None">
+    <xs:keyref name="FK__PHIEUMUON__MADG__3E52440B" refer="DOCGIA_Constraint1" msprop:rel_Generator_UserParentTable="DOCGIA" msprop:rel_Generator_UserChildTable="PHIEUMUON" msprop:rel_Generator_RelationVarName="relationFK__PHIEUMUON__MADG__3E52440B" msprop:rel_Generator_ChildPropName="GetPHIEUMUONRows" msprop:rel_Generator_ParentPropName="DOCGIARow" msprop:rel_Generator_UserRelationName="FK__PHIEUMUON__MADG__3E52440B" msdata:DeleteRule="None">
       <xs:selector xpath=".//mstns:PHIEUMUON" />
       <xs:field xpath="mstns:MADG" />
     </xs:keyref>
-    <xs:keyref name="FK__DAUSACH__MANGONN__2E1BDC42" refer="NGONNGU_Constraint1" msprop:rel_Generator_UserParentTable="NGONNGU" msprop:rel_Generator_UserChildTable="DAUSACH" msprop:rel_Generator_RelationVarName="relationFK__DAUSACH__MANGONN__2E1BDC42" msprop:rel_Generator_ChildPropName="GetDAUSACHRows" msprop:rel_Generator_ParentPropName="NGONNGURow" msprop:rel_Generator_UserRelationName="FK__DAUSACH__MANGONN__2E1BDC42">
-      <xs:selector xpath=".//mstns:DAUSACH" />
-      <xs:field xpath="mstns:MANGONNGU" />
+    <xs:keyref name="FK__PHIEUMUON__MANV__3F466844" refer="NHANVIEN_Constraint1" msprop:rel_Generator_UserParentTable="NHANVIEN" msprop:rel_Generator_UserChildTable="PHIEUMUON" msprop:rel_Generator_RelationVarName="relationFK__PHIEUMUON__MANV__3F466844" msprop:rel_Generator_ChildPropName="GetPHIEUMUONRows" msprop:rel_Generator_ParentPropName="NHANVIENRow" msprop:rel_Generator_UserRelationName="FK__PHIEUMUON__MANV__3F466844" msdata:DeleteRule="None">
+      <xs:selector xpath=".//mstns:PHIEUMUON" />
+      <xs:field xpath="mstns:MANV" />
     </xs:keyref>
-    <xs:keyref name="FK__DAUSACH__MaTL__2F10007B" refer="THELOAI_Constraint1" msprop:rel_Generator_UserParentTable="THELOAI" msprop:rel_Generator_UserChildTable="DAUSACH" msprop:rel_Generator_RelationVarName="relationFK__DAUSACH__MaTL__2F10007B" msprop:rel_Generator_ChildPropName="GetDAUSACHRows" msprop:rel_Generator_ParentPropName="THELOAIRow" msprop:rel_Generator_UserRelationName="FK__DAUSACH__MaTL__2F10007B">
+    <xs:keyref name="FK__DAUSACH__MaTL__2F10007B" refer="THELOAI_Constraint1" msprop:rel_Generator_UserParentTable="THELOAI" msprop:rel_Generator_UserChildTable="DAUSACH" msprop:rel_Generator_RelationVarName="relationFK__DAUSACH__MaTL__2F10007B" msprop:rel_Generator_ChildPropName="GetDAUSACHRows" msprop:rel_Generator_UserRelationName="FK__DAUSACH__MaTL__2F10007B" msprop:rel_Generator_ParentPropName="THELOAIRow">
       <xs:selector xpath=".//mstns:DAUSACH" />
       <xs:field xpath="mstns:MaTL" />
     </xs:keyref>
-    <xs:keyref name="FK__CT_PHIEUM__MASAC__4316F928" refer="SACH_Constraint1" msprop:rel_Generator_UserParentTable="SACH" msprop:rel_Generator_UserChildTable="CT_PHIEUMUON" msprop:rel_Generator_RelationVarName="relationFK__CT_PHIEUM__MASAC__4316F928" msprop:rel_Generator_ChildPropName="GetCT_PHIEUMUONRows" msprop:rel_Generator_ParentPropName="SACHRow" msprop:rel_Generator_UserRelationName="FK__CT_PHIEUM__MASAC__4316F928" msdata:DeleteRule="None">
+    <xs:keyref name="FK__DAUSACH__MANGONN__2E1BDC42" refer="NGONNGU_Constraint1" msprop:rel_Generator_UserParentTable="NGONNGU" msprop:rel_Generator_UserChildTable="DAUSACH" msprop:rel_Generator_RelationVarName="relationFK__DAUSACH__MANGONN__2E1BDC42" msprop:rel_Generator_ChildPropName="GetDAUSACHRows" msprop:rel_Generator_UserRelationName="FK__DAUSACH__MANGONN__2E1BDC42" msprop:rel_Generator_ParentPropName="NGONNGURow">
+      <xs:selector xpath=".//mstns:DAUSACH" />
+      <xs:field xpath="mstns:MANGONNGU" />
+    </xs:keyref>
+    <xs:keyref name="FK__CT_PHIEUM__MASAC__4316F928" refer="SACH_Constraint1" msprop:rel_Generator_UserParentTable="SACH" msprop:rel_Generator_UserChildTable="CT_PHIEUMUON" msprop:rel_Generator_RelationVarName="relationFK__CT_PHIEUM__MASAC__4316F928" msprop:rel_Generator_UserRelationName="FK__CT_PHIEUM__MASAC__4316F928" msprop:rel_Generator_ChildPropName="GetCT_PHIEUMUONRows" msprop:rel_Generator_ParentPropName="SACHRow" msdata:DeleteRule="None">
       <xs:selector xpath=".//mstns:CT_PHIEUMUON" />
       <xs:field xpath="mstns:MASACH" />
     </xs:keyref>
-    <xs:keyref name="FK__CT_PHIEUM__MANVN__440B1D61" refer="NHANVIEN_Constraint1" msprop:rel_Generator_UserParentTable="NHANVIEN" msprop:rel_Generator_UserChildTable="CT_PHIEUMUON" msprop:rel_Generator_RelationVarName="relationFK__CT_PHIEUM__MANVN__440B1D61" msprop:rel_Generator_ChildPropName="GetCT_PHIEUMUONRows" msprop:rel_Generator_ParentPropName="NHANVIENRow" msprop:rel_Generator_UserRelationName="FK__CT_PHIEUM__MANVN__440B1D61" msdata:DeleteRule="None">
-      <xs:selector xpath=".//mstns:CT_PHIEUMUON" />
-      <xs:field xpath="mstns:MANVNS" />
-    </xs:keyref>
-    <xs:keyref name="FK__CT_PHIEUM__MAPHI__4222D4EF" refer="PHIEUMUON_Constraint1" msprop:rel_Generator_UserParentTable="PHIEUMUON" msprop:rel_Generator_UserChildTable="CT_PHIEUMUON" msprop:rel_Generator_RelationVarName="relationFK__CT_PHIEUM__MAPHI__4222D4EF" msprop:rel_Generator_ChildPropName="GetCT_PHIEUMUONRows" msprop:rel_Generator_ParentPropName="PHIEUMUONRow" msprop:rel_Generator_UserRelationName="FK__CT_PHIEUM__MAPHI__4222D4EF" msdata:DeleteRule="None">
+    <xs:keyref name="FK__CT_PHIEUM__MAPHI__4222D4EF" refer="PHIEUMUON_Constraint1" msprop:rel_Generator_UserParentTable="PHIEUMUON" msprop:rel_Generator_UserChildTable="CT_PHIEUMUON" msprop:rel_Generator_RelationVarName="relationFK__CT_PHIEUM__MAPHI__4222D4EF" msprop:rel_Generator_ChildPropName="GetCT_PHIEUMUONRows" msprop:rel_Generator_UserRelationName="FK__CT_PHIEUM__MAPHI__4222D4EF" msprop:rel_Generator_ParentPropName="PHIEUMUONRow" msdata:DeleteRule="None">
       <xs:selector xpath=".//mstns:CT_PHIEUMUON" />
       <xs:field xpath="mstns:MAPHIEU" />
+    </xs:keyref>
+    <xs:keyref name="FK__CT_PHIEUM__MANVN__440B1D61" refer="NHANVIEN_Constraint1" msprop:rel_Generator_UserParentTable="NHANVIEN" msprop:rel_Generator_UserChildTable="CT_PHIEUMUON" msprop:rel_Generator_RelationVarName="relationFK__CT_PHIEUM__MANVN__440B1D61" msprop:rel_Generator_ChildPropName="GetCT_PHIEUMUONRows" msprop:rel_Generator_UserRelationName="FK__CT_PHIEUM__MANVN__440B1D61" msprop:rel_Generator_ParentPropName="NHANVIENRow" msdata:DeleteRule="None">
+      <xs:selector xpath=".//mstns:CT_PHIEUMUON" />
+      <xs:field xpath="mstns:MANVNS" />
     </xs:keyref>
   </xs:element>
   <xs:annotation>

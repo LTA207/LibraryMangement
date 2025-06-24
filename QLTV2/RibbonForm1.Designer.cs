@@ -61,6 +61,7 @@
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup16 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbpReport = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -72,6 +73,7 @@
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.btnXoalogin = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -98,10 +100,11 @@
             this.btnTopDS,
             this.btnDGQuaHan,
             this.btnDoiPass,
-            this.btnTraCuu});
+            this.btnTraCuu,
+            this.btnXoalogin});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(5);
-            this.ribbon.MaxItemId = 19;
+            this.ribbon.MaxItemId = 20;
             this.ribbon.Name = "ribbon";
             this.ribbon.OptionsMenuMinWidth = 589;
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -305,7 +308,8 @@
             this.rbpSystem.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup7,
             this.ribbonPageGroup9,
-            this.ribbonPageGroup14});
+            this.ribbonPageGroup14,
+            this.ribbonPageGroup16});
             this.rbpSystem.Name = "rbpSystem";
             this.rbpSystem.Text = "Hệ thống";
             // 
@@ -326,6 +330,12 @@
             this.ribbonPageGroup14.ItemLinks.Add(this.btnDoiPass);
             this.ribbonPageGroup14.Name = "ribbonPageGroup14";
             this.ribbonPageGroup14.Text = "ribbonPageGroup14";
+            // 
+            // ribbonPageGroup16
+            // 
+            this.ribbonPageGroup16.ItemLinks.Add(this.btnXoalogin);
+            this.ribbonPageGroup16.Name = "ribbonPageGroup16";
+            this.ribbonPageGroup16.Text = "ribbonPageGroup16";
             // 
             // rbpReport
             // 
@@ -399,6 +409,13 @@
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
+            // btnXoalogin
+            // 
+            this.btnXoalogin.Caption = "Xóa login";
+            this.btnXoalogin.Id = 19;
+            this.btnXoalogin.Name = "btnXoalogin";
+            this.btnXoalogin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoalogin_ItemClick);
+            // 
             // RibbonForm1
             // 
             this.Appearance.Options.UseFont = true;
@@ -468,5 +485,7 @@
         private DevExpress.XtraBars.BarButtonItem btnTraCuu;
         private DevExpress.XtraBars.Ribbon.RibbonPage rbpTraCuu;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup15;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup16;
+        private DevExpress.XtraBars.BarButtonItem btnXoalogin;
     }
 }

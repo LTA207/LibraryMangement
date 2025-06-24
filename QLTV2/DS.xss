@@ -7,7 +7,7 @@
 <DiagramLayout xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ex:showrelationlabel="False" ViewPortX="-10" ViewPortY="-29" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:CT_PHIEUMUON" ZOrder="38" X="655" Y="480" Height="227" Width="286" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
-    <Shape ID="DesignTable:DAUSACH" ZOrder="19" X="70" Y="70" Height="365" Width="239" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="306" />
+    <Shape ID="DesignTable:DAUSACH" ZOrder="21" X="70" Y="70" Height="365" Width="239" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="306" />
     <Shape ID="DesignTable:DOCGIA" ZOrder="37" X="1342" Y="800" Height="342" Width="225" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="283" />
     <Shape ID="DesignTable:NGANTU" ZOrder="36" X="655" Y="1212" Height="158" Width="232" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
     <Shape ID="DesignTable:NGONNGU" ZOrder="35" X="379" Y="70" Height="135" Width="247" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
@@ -17,23 +17,35 @@
     <Shape ID="DesignTable:TACGIA" ZOrder="31" X="718" Y="1440" Height="181" Width="221" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="122" />
     <Shape ID="DesignTable:TACGIA_SACH" ZOrder="30" X="379" Y="1440" Height="135" Width="269" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
     <Shape ID="DesignTable:THELOAI" ZOrder="29" X="379" Y="275" Height="135" Width="230" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
-    <Shape ID="DesignTable:DataTable1" ZOrder="15" X="973" Y="215" Height="204" Width="248" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="145" />
-    <Shape ID="DesignTable:DataTable2" ZOrder="16" X="961" Y="-19" Height="158" Width="248" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
-    <Shape ID="DesignTable:DemPhieuMuonChuaTra" ZOrder="14" X="1637" Y="70" Height="112" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="54" />
-    <Shape ID="DesignTable:DemSoSachChuaTra" ZOrder="13" X="2007" Y="70" Height="112" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="54" />
-    <Shape ID="DesignTable:KiemTraQuaHan" ZOrder="12" X="2377" Y="70" Height="112" Width="284" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="54" />
-    <Shape ID="DesignTable:LayDocGiaChuaTaoTK" ZOrder="11" X="2731" Y="70" Height="158" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
-    <Shape ID="DesignTable:LayDocGiaDaTaoTK" ZOrder="10" X="3101" Y="70" Height="158" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
-    <Shape ID="DesignTable:LayNhanVienChuaTaoTK" ZOrder="9" X="3471" Y="70" Height="158" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
-    <Shape ID="DesignTable:LayNhanVienDaTaoTK" ZOrder="8" X="3841" Y="70" Height="158" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
-    <Shape ID="DesignTable:sp_DanhSachDocGia" ZOrder="7" X="4211" Y="70" Height="273" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
-    <Shape ID="DesignTable:sp_DocGiaQuaHan" ZOrder="6" X="4581" Y="70" Height="273" Width="299" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
-    <Shape ID="DesignTable:sp_LayDanhMucDauSach" ZOrder="5" X="4950" Y="70" Height="296" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="237" />
-    <Shape ID="DesignTable:sp_TopSachDuocMuonNhieu" ZOrder="4" X="5320" Y="70" Height="227" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
-    <Shape ID="DesignTable:TRACUUSACH" ZOrder="3" X="677" Y="65" Height="296" Width="248" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="237" />
+    <Shape ID="DesignTable:DataTable1" ZOrder="17" X="973" Y="215" Height="204" Width="248" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="145" />
+    <Shape ID="DesignTable:DataTable2" ZOrder="18" X="961" Y="-19" Height="158" Width="248" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
+    <Shape ID="DesignTable:DemPhieuMuonChuaTra" ZOrder="16" X="1637" Y="70" Height="112" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="54" />
+    <Shape ID="DesignTable:DemSoSachChuaTra" ZOrder="15" X="2007" Y="70" Height="112" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="54" />
+    <Shape ID="DesignTable:KiemTraQuaHan" ZOrder="14" X="2377" Y="70" Height="112" Width="284" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="54" />
+    <Shape ID="DesignTable:LayDocGiaChuaTaoTK" ZOrder="13" X="2731" Y="70" Height="158" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
+    <Shape ID="DesignTable:LayDocGiaDaTaoTK" ZOrder="12" X="3101" Y="70" Height="158" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
+    <Shape ID="DesignTable:LayNhanVienChuaTaoTK" ZOrder="11" X="3471" Y="70" Height="158" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
+    <Shape ID="DesignTable:LayNhanVienDaTaoTK" ZOrder="10" X="3841" Y="70" Height="158" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
+    <Shape ID="DesignTable:sp_DanhSachDocGia" ZOrder="9" X="4211" Y="70" Height="273" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
+    <Shape ID="DesignTable:sp_DocGiaQuaHan" ZOrder="8" X="4581" Y="70" Height="273" Width="299" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
+    <Shape ID="DesignTable:sp_LayDanhMucDauSach" ZOrder="7" X="4950" Y="70" Height="296" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="237" />
+    <Shape ID="DesignTable:sp_TopSachDuocMuonNhieu" ZOrder="6" X="5320" Y="70" Height="227" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
+    <Shape ID="DesignTable:TRACUUSACH" ZOrder="5" X="677" Y="65" Height="296" Width="248" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="237" />
   </Shapes>
   <Connectors>
-    <Connector ID="DesignRelation:FK__CT_PHIEUM__MAPHI__4222D4EF" ZOrder="22" LineWidth="11">
+    <Connector ID="DesignRelation:FK__CT_PHIEUM__MASAC__4316F928" ZOrder="1" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>585</X>
+          <Y>582</Y>
+        </Point>
+        <Point>
+          <X>655</X>
+          <Y>582</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
+    <Connector ID="DesignRelation:FK__CT_PHIEUM__MAPHI__4222D4EF" ZOrder="24" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>1011</X>
@@ -49,7 +61,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK__CT_PHIEUM__MANVN__440B1D61" ZOrder="23" LineWidth="11">
+    <Connector ID="DesignRelation:FK__CT_PHIEUM__MANVN__440B1D61" ZOrder="25" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>1011</X>
@@ -61,19 +73,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK__CT_PHIEUM__MASAC__4316F928" ZOrder="24" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>585</X>
-          <Y>582</Y>
-        </Point>
-        <Point>
-          <X>655</X>
-          <Y>582</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
-    <Connector ID="DesignRelation:FK__DAUSACH__MaTL__2F10007B" ZOrder="18" LineWidth="11">
+    <Connector ID="DesignRelation:FK__DAUSACH__MaTL__2F10007B" ZOrder="20" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>379</X>
@@ -85,7 +85,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK__DAUSACH__MANGONN__2E1BDC42" ZOrder="17" LineWidth="11">
+    <Connector ID="DesignRelation:FK__DAUSACH__MANGONN__2E1BDC42" ZOrder="19" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>379</X>
@@ -97,7 +97,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK__PHIEUMUON__MADG__3E52440B" ZOrder="20" LineWidth="11">
+    <Connector ID="DesignRelation:FK__PHIEUMUON__MADG__3E52440B" ZOrder="22" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>1342</X>
@@ -109,7 +109,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK__PHIEUMUON__MANV__3F466844" ZOrder="21" LineWidth="11">
+    <Connector ID="DesignRelation:FK__PHIEUMUON__MANV__3F466844" ZOrder="23" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>1135</X>
@@ -121,7 +121,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK__SACH__MANGANTU__32E0915F" ZOrder="26" LineWidth="11">
+    <Connector ID="DesignRelation:FK__SACH__MANGANTU__32E0915F" ZOrder="4" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>655</X>
@@ -137,7 +137,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK__SACH__ISBN__31EC6D26" ZOrder="25" LineWidth="11">
+    <Connector ID="DesignRelation:FK__SACH__ISBN__31EC6D26" ZOrder="26" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>292</X>
@@ -181,7 +181,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK__SACH__ISBN__31EC6D261" ZOrder="2" LineWidth="11">
+    <Connector ID="DesignRelation:FK__SACH__ISBN__31EC6D261" ZOrder="3" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>694</X>
@@ -197,7 +197,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK__TACGIA_SAC__ISBN__36B122431" ZOrder="1" LineWidth="11">
+    <Connector ID="DesignRelation:FK__TACGIA_SAC__ISBN__36B122431" ZOrder="2" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>702</X>

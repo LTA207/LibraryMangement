@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -65,14 +66,21 @@ namespace QLTV2
             this.gcDAUSACH.CellValidating += gcDAUSACH_CellValidating;
             this.gcDAUSACH.EditingControlShowing += gcDAUSACH_EditingControlShowing;
 
+            this.gcSACH.CellBeginEdit += gcSACH_CellBeginEdit;
+            this.gcSACH.CellValueChanged += gcSACH_CellValueChanged;
+            this.gcSACH.EditingControlShowing += gcSACH_EditingControlShowing;
+
             SetupNganTuComboBox();
             SetupTinhTrangComboBox();
-            SetupChoMuonComboBox();
+            //SetupChoMuonComboBox();
 
             SetupColunmTinhTrang();
             SetupColunmChoMuon();
             GroupBox1.Enabled = GroupBox2.Enabled = false;
             GroupBox3.Enabled = true;
+
+            dtpNSB.DataBindings.Clear();
+            dtpNSB.DataBindings.Add("Value", bdsDS, "Ngayxuatban", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void SaveCurrentRowState(string action, string table)
@@ -158,114 +166,102 @@ namespace QLTV2
         }
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtISBN.Text))
-            {
-                MessageBox.Show("Mã đầu sách không được thiếu.");
-                txtISBN.Focus();
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtTensach.Text))
-            {
-                MessageBox.Show("Tên sách không được thiếu.");
-                txtTensach.Focus();
-                return;
-            }
+            bool isEditingDauSach = GroupBox1.Enabled || (bdsDS.Current != null && gcDAUSACH.Focused);
+            bool isEditingSach = GroupBox2.Enabled || (bdsSach.Current != null && gcSACH.Focused);
 
-            if (string.IsNullOrWhiteSpace(txtKhosach.Text))
+            if (isEditingDauSach)
             {
-                MessageBox.Show("Kho sách không được thiếu.");
-                txtKhosach.Focus();
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtNoidung.Text))
-            {
-                MessageBox.Show("Nội dung không được thiếu.");
-                txtNoidung.Focus();
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtHinh.Text))
-            {
-                MessageBox.Show("Hình ảnh không được thiếu.");
-                txtHinh.Focus();
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtLanxuatban.Text))
-            {
-                MessageBox.Show("Lần xuất bản không được thiếu.");
-                txtLanxuatban.Focus();
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtGia.Text))
-            {
-                MessageBox.Show("Giá không được thiếu.");
-                txtGia.Focus();
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtSotrang.Text))
-            {
-                MessageBox.Show("Số trang không được thiếu.");
-                txtSotrang.Focus();
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtNhaXB.Text))
-            {
-                MessageBox.Show("Nhà xuất bản không được thiếu.");
-                txtNhaXB.Focus();
-                return;
-            }
-
-            string ISBN = txtISBN.Text.Trim();
-            if (bdsDS.Cast<DataRowView>().Any(r => r != bdsDS.Current && r["ISBN"].ToString() == ISBN))
-            {
-                MessageBox.Show("Mã đầu sách này đã tồn tại. Vui lòng nhập mã khác.");
-                txtISBN.Focus();
-                return;
-            }
-
-            try
-            {
-                bdsDS.EndEdit();
-                bdsDS.ResetCurrentItem();
-                if (dS.HasChanges())
+                if (string.IsNullOrWhiteSpace(txtISBN.Text))
                 {
-                    DAUSACHTableAdapter.Update(dS.DAUSACH);
-                    MessageBox.Show("Dữ liệu đã được ghi vào db");
+                    MessageBox.Show("Mã đầu sách không được thiếu.");
+                    txtISBN.Focus();
+                    return;
                 }
-                else
+
+                if (bdsDS.Cast<DataRowView>().Any(r => r != bdsDS.Current && r["ISBN"].ToString() == txtISBN.Text.Trim()))
                 {
-                    MessageBox.Show("Không có thay đổi nào để ghi vào cơ sở dữ liệu.");
+                    MessageBox.Show("Mã đầu sách đã tồn tại.");
+                    txtISBN.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtTensach.Text) || string.IsNullOrWhiteSpace(txtKhosach.Text) ||
+                    string.IsNullOrWhiteSpace(txtNoidung.Text) || string.IsNullOrWhiteSpace(txtHinh.Text) ||
+                    string.IsNullOrWhiteSpace(txtLanxuatban.Text) || string.IsNullOrWhiteSpace(txtGia.Text) ||
+                    string.IsNullOrWhiteSpace(txtSotrang.Text) || string.IsNullOrWhiteSpace(txtNhaXB.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin đầu sách.");
+                    return;
+                }
+
+                try
+                {
+                    bdsDS.EndEdit();
+                    bdsDS.ResetCurrentItem();
+                    if (dS.HasChanges())
+                    {
+                        DAUSACHTableAdapter.Update(dS.DAUSACH);
+                        MessageBox.Show("Đã ghi đầu sách.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không có thay đổi.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi ghi đầu sách: " + ex.Message);
+                    return;
                 }
             }
-            catch (Exception ex)
+            else if (isEditingSach)
             {
-                if (ex.Message.Contains("PRIMARY"))
+                if (string.IsNullOrWhiteSpace(txtMAS.Text))
                 {
-                    MessageBox.Show("Mã đầu sách bị trùng.");
+                    MessageBox.Show("Mã sách không được thiếu.");
+                    txtMAS.Focus();
+                    return;
                 }
-                else
-                {
-                    MessageBox.Show("Lỗi ghi đầu sách. " + Environment.NewLine + ex.Message);
-                }
-                return;
-            }
 
-            btnGhi.Enabled = btnXoa.Enabled = btnThem.Enabled = GroupBox3.Enabled = contextMenuStrip1.Enabled = true;
-            if(undoStack.Count != 0)
-            {
-                btnPhuchoi.Enabled = true;
+                if (bdsSach.Cast<DataRowView>().Any(r => r != bdsSach.Current && r["MASACH"].ToString() == txtMAS.Text.Trim()))
+                {
+                    MessageBox.Show("Mã sách đã tồn tại.");
+                    txtMAS.Focus();
+                    return;
+                }
+
+                try
+                {
+                    bdsSach.EndEdit();
+                    bdsSach.ResetCurrentItem();
+                    if (dS.HasChanges())
+                    {
+                        SACHTableAdapter.Update(dS.SACH);
+                        MessageBox.Show("Đã ghi sách.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không có thay đổi.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi ghi sách: " + ex.Message);
+                    return;
+                }
             }
             else
             {
-                btnPhuchoi.Enabled = false;
+                MessageBox.Show("Không có thay đổi nào để ghi.");
+                return;
             }
-            btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;
+
+            // Reset UI
             gcDAUSACH.Enabled = gcSACH.Enabled = true;
+            GroupBox1.Enabled = GroupBox2.Enabled = false;
+            GroupBox3.Enabled = true;
+            btnGhi.Enabled = btnThem.Enabled = btnXoa.Enabled = btnThoat.Enabled = contextMenuStrip1.Enabled = true;
+            btnPhuchoi.Enabled = undoStack.Count > 0;
         }
         private void btnPhuchoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -349,8 +345,25 @@ namespace QLTV2
                             dS.SACH.Rows.InsertAt(row, item.Index);
                         }
                     }
+                    else if (item.Action == "Edit")
+                    {
+                        bdsSach.Position = isFilterActive ? item.Index : item.RealIndex;
+
+                        DataRow current = ((DataRowView)bdsSach.Current).Row;
+                        for (int i = 0; i < current.Table.Columns.Count; i++)
+                        {
+                            if (!current.Table.Columns[i].ReadOnly)
+                            {
+                                current[i] = item.ItemArray[i];
+                            }
+                        }
+
+                        bdsSach.ResetBindings(false);
+                        gcSACH.Refresh();
+                    }
+
                 }
-                    MessageBox.Show("Đã phục hồi dòng dữ liệu.");
+                MessageBox.Show("Đã phục hồi dòng dữ liệu.");
             }
             else
             {
@@ -485,67 +498,14 @@ namespace QLTV2
             newRow["CHOMUON"] = false;
 
             btnThem.Enabled = btnXoa.Enabled = contextMenuStrip1.Enabled = btnThoat.Enabled = btnGhi.Enabled = contextMenuStrip1.Enabled = btnPhuchoi.Enabled =false;
-            btnReload.Enabled = true;
+            btnReload.Enabled = btnGhi.Enabled = true;
             gcDAUSACH.Enabled = gcSACH.Enabled = false;
             txtMAS.Focus();
         }
 
         private void btnGhisach_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtMAS.Text))
-            {
-                MessageBox.Show("Mã sách không được thiếu.");
-                txtMAS.Focus();
-                return;
-            }
 
-            string MaSach = txtMAS.Text.Trim();
-            if (bdsSach.Cast<DataRowView>().Any(r => r != bdsSach.Current && r["MASACH"].ToString() == MaSach))
-            {
-                MessageBox.Show("Mã sách này đã tồn tại. Vui lòng nhập mã khác.");
-                txtMAS.Focus();
-                return;
-            }
-
-            try
-            {
-
-                bdsSach.EndEdit();
-                bdsSach.ResetCurrentItem();
-                if (dS.HasChanges())
-                {
-                    SACHTableAdapter.Update(dS.SACH);
-                    MessageBox.Show("Dữ liệu đã được ghi vào db");
-                }
-                else
-                {
-                    MessageBox.Show("Không có thay đổi nào để ghi vào cơ sở dữ liệu.");
-                }
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.Contains("PRIMARY"))
-                {
-                    MessageBox.Show("Mã đầu sách bị trùng.");
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi ghi đầu sách. " + Environment.NewLine + ex.Message);
-                }
-                return;
-            }
-            if(undoStack.Count == 0)
-            {
-                btnPhuchoi.Enabled = false;
-            }
-            else
-            {
-                btnPhuchoi.Enabled = true;
-            }
-            gcDAUSACH.Enabled = gcSACH.Enabled = true;
-            GroupBox1.Enabled = GroupBox2.Enabled = false;
-            GroupBox3.Enabled = true;
-            btnGhi.Enabled = btnThem.Enabled = btnXoa.Enabled = btnThoat.Enabled = contextMenuStrip1.Enabled = true;
         }
 
         private void btnTimkiem_Click(object sender, EventArgs e)
@@ -621,21 +581,21 @@ namespace QLTV2
             cmbTT.DataBindings.Add("SelectedValue", bdsSach, "TINHTRANG", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
-        private void SetupChoMuonComboBox()
-        {
-            cmbCM.DataSource = new List<KeyValuePair<bool, string>>()
-            {
-                new KeyValuePair<bool, string>(true, "Đã được mượn"),
-                new KeyValuePair<bool, string>(false, "Chưa được mượn")
-            };
-            cmbCM.DisplayMember = "Value";
-            cmbCM.ValueMember = "Key";
+        //private void SetupChoMuonComboBox()
+        //{
+        //    cmbCM.DataSource = new List<KeyValuePair<bool, string>>()
+        //    {
+        //        new KeyValuePair<bool, string>(true, "Đã được mượn"),
+        //        new KeyValuePair<bool, string>(false, "Chưa được mượn")
+        //    };
+        //    cmbCM.DisplayMember = "Value";
+        //    cmbCM.ValueMember = "Key";
 
-            cmbCM.SelectedValue = false;
+        //    cmbCM.SelectedValue = false;
 
-            cmbCM.DataBindings.Clear();
-            cmbCM.DataBindings.Add("SelectedValue", bdsSach, "CHOMUON", true, DataSourceUpdateMode.OnPropertyChanged);
-        }
+        //    cmbCM.DataBindings.Clear();
+        //    cmbCM.DataBindings.Add("SelectedValue", bdsSach, "CHOMUON", true, DataSourceUpdateMode.OnPropertyChanged);
+        //}
 
         private void SetupColunmTinhTrang()
         {
@@ -705,17 +665,109 @@ namespace QLTV2
             TextBox txt = e.Control as TextBox;
             if (txt == null) return;
 
-            txt.KeyPress -= OnlyAllowDigits_KeyPress; // tránh đăng ký nhiều lần
+            txt.KeyPress -= OnlyAllowDigits_KeyPress;
+            txt.KeyPress -= PreventWhiteSpace_KeyPress; // Gỡ bỏ nếu có trước đó
+
             int colIndex = gcDAUSACH.CurrentCell.ColumnIndex;
             string dataProperty = gcDAUSACH.Columns[colIndex].DataPropertyName;
 
-            // Nếu là cột số thì gắn sự kiện chỉ cho nhập số
             if (dataProperty == "Gia" || dataProperty == "Sotrang" || dataProperty == "Lanxuatban")
             {
                 txt.KeyPress += OnlyAllowDigits_KeyPress;
             }
+
+            // Chặn khoảng trắng nếu là cột ISBN
+            if (dataProperty == "ISBN")
+            {
+                txt.KeyPress += PreventWhiteSpace_KeyPress;
+            }
         }
 
+        private void gcSACH_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (gcSACH.Columns[e.ColumnIndex].DataPropertyName == "MASACH")
+            {
+                string currentMaSach = gcSACH.Rows[e.RowIndex].Cells["MASACH"].Value?.ToString();
+                if (!string.IsNullOrEmpty(currentMaSach) && IsSachDaDuocMuon(currentMaSach))
+                {
+                    MessageBox.Show("Sách đã từng được mượn. Không thể chỉnh mã sách.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
+            SaveCurrentRowState("Edit", "SACH");
+        }
+
+        private void gcSACH_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            var dgv = sender as DataGridView;
+            if (dgv == null || e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            DataGridViewRow row = dgv.Rows[e.RowIndex];
+            string dataProperty = dgv.Columns[e.ColumnIndex].DataPropertyName;
+            object value = row.Cells[e.ColumnIndex].Value;
+
+            string[] requiredColumns = { "MASACH"};
+
+            if (requiredColumns.Contains(dataProperty) && (value == null || string.IsNullOrWhiteSpace(value.ToString())))
+            {
+                MessageBox.Show($"{dataProperty} không được để trống.", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                if (undoStack.Count > 0 && undoStack.Peek().Action == "Edit")
+                {
+                    var lastEdit = undoStack.Peek();
+                    int columnIndex = dgv.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.DataPropertyName == dataProperty).Index;
+                    dgv.Rows[e.RowIndex].Cells[columnIndex].Value = lastEdit.ItemArray[columnIndex];
+                }
+
+                return;
+            }
+
+            try
+            {
+                bdsSach.EndEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi cập nhật sách: " + ex.Message);
+            }
+        }
+        private void gcSACH_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            TextBox txt = e.Control as TextBox;
+            if (txt == null) return;
+
+            // Gỡ bỏ handler cũ để tránh chồng lặp
+            txt.KeyPress -= PreventWhiteSpace_KeyPress;
+
+            int colIndex = gcSACH.CurrentCell.ColumnIndex;
+            string columnName = gcSACH.Columns[colIndex].Name;
+
+            if (columnName == "MASACH") // chỉ áp dụng cho cột MASACH
+            {
+                txt.KeyPress += PreventWhiteSpace_KeyPress;
+            }
+        }
+        private void PreventWhiteSpace_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private bool IsSachDaDuocMuon(string masach)
+        {
+            string query = "SELECT COUNT(*) FROM CT_PHIEUMUON WHERE MASACH = @masach";
+            using (SqlConnection conn = new SqlConnection(Program.connstr))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@masach", masach);
+                conn.Open();
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
 
     }
 }

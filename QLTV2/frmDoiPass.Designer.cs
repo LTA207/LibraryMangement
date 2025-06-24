@@ -103,19 +103,19 @@
             // 
             // btnXacNhan
             // 
-            this.btnXacNhan.Location = new System.Drawing.Point(289, 398);
+            this.btnXacNhan.Location = new System.Drawing.Point(264, 400);
             this.btnXacNhan.Name = "btnXacNhan";
-            this.btnXacNhan.Size = new System.Drawing.Size(75, 23);
+            this.btnXacNhan.Size = new System.Drawing.Size(108, 23);
             this.btnXacNhan.TabIndex = 7;
-            this.btnXacNhan.Text = "Xác nhận";
+            this.btnXacNhan.Text = "Đổi mật khẩu";
             this.btnXacNhan.UseVisualStyleBackColor = true;
             this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(569, 398);
+            this.btnThoat.Location = new System.Drawing.Point(614, 400);
             this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(75, 23);
+            this.btnThoat.Size = new System.Drawing.Size(115, 23);
             this.btnThoat.TabIndex = 8;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;

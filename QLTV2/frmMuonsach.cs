@@ -46,7 +46,7 @@ namespace QLTV2
             try
             {
                 // Tắt ràng buộc tạm thời để tránh lỗi khi tải dữ liệu
-                dS.EnforceConstraints = false;
+                //dS.EnforceConstraints = false;
 
                 // 1. Tải dữ liệu từ các bảng cha
                 this.NGONNGUTableAdapter.Fill(this.dS.NGONNGU);
@@ -278,25 +278,7 @@ namespace QLTV2
         }
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (bdsCT_PHIEUMUON.Count > 0)
-            {
-                MessageBox.Show("Đầu sách đã có sách, không thể xóa.");
-                return;
-            }
 
-            if (MessageBox.Show("Bạn có thật sự muốn xóa đầu sách này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                try
-                {
-                    SaveCurrentRowState("Delete");
-                    bdsPM.RemoveCurrent();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi xóa đầu sách.\n" + ex.Message);
-                    return;
-                }
-            }
         }
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -351,60 +333,7 @@ namespace QLTV2
         }
         private void btnPhuchoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (undoStack.Count > 0)
-            {
-                var item = undoStack.Pop();
 
-
-                if (item.Action == "Add")
-                {
-                    if (bdsPM.Count > 0)
-                    {
-                        bdsPM.RemoveAt(bdsPM.Count - 1);
-                    }
-                }
-                else if (item.Action == "Delete")
-                {
-                    // Tìm dòng đã bị xóa có cùng ISBN
-                    var deletedRow = dS.PHIEUMUON.Rows
-                        .Cast<DataRow>()
-                        .FirstOrDefault(r => r.RowState == DataRowState.Deleted && r["MAPHIEU", DataRowVersion.Original].ToString() == item.ItemArray[0].ToString());
-
-                    if (deletedRow != null)
-                    {
-                        // Hủy xóa (rollback)
-                        deletedRow.RejectChanges();
-                    }
-                    else
-                    {
-                        // Nếu không tìm thấy dòng đã bị xóa, thêm lại từ ItemArray
-                        DataRow row = dS.PHIEUMUON.NewRow();
-                        row.ItemArray = item.ItemArray;
-                        dS.PHIEUMUON.Rows.InsertAt(row, item.Index);
-                    }
-                }
-                else if (item.Action == "Edit")
-                {
-                    bdsPM.Position = isFilterActive ? item.Index : item.RealIndex; // đưa con trỏ về đúng dòng đã sửa
-
-                    DataRow current = ((DataRowView)bdsPM.Current).Row;
-                    for (int i = 0; i < current.Table.Columns.Count; i++)
-                    {
-                        if (!current.Table.Columns[i].ReadOnly)
-                        {
-                            current[i] = item.ItemArray[i];
-                        }
-                    }
-                }
-
-                bdsPM.ResetBindings(false);
-                gcPHIEUMUON.Refresh();
-                MessageBox.Show("Đã phục hồi dòng dữ liệu.");
-            }
-            else
-            {
-                MessageBox.Show("Không có thao tác nào để phục hồi.");
-            }
         }
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {

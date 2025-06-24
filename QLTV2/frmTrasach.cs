@@ -79,14 +79,34 @@ namespace QLTV2
 
             if (dgvSachMuon.Columns.Count > 0)
             {
+                if (dgvSachMuon.Columns.Contains("CHOMUON"))
+                    dgvSachMuon.Columns.Remove("CHOMUON");
+
+                DataGridViewComboBoxColumn comboCol = new DataGridViewComboBoxColumn();
+                comboCol.Name = "CHOMUON";
+                comboCol.HeaderText = "Tình trạng mượn";
+                comboCol.DataPropertyName = "CHOMUON"; 
+                comboCol.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton;
+
+                comboCol.DataSource = new[]
+                {
+    new { Text = "Mới", Value = true },
+    new { Text = "Cũ", Value = false }
+};
+                comboCol.DisplayMember = "Text";
+                comboCol.ValueMember = "Value";
+                comboCol.FlatStyle = FlatStyle.Flat;
+                comboCol.ReadOnly = true; 
+
+                dgvSachMuon.Columns.Insert(2, comboCol);
+
                 dgvSachMuon.Columns["MASACH"].HeaderText = "Mã sách";
                 dgvSachMuon.Columns["TENSACH"].HeaderText = "Tên sách";
-                dgvSachMuon.Columns["CHOMUON"].HeaderText = "Tình trạng mượn";
                 dgvSachMuon.Columns["MANGANTU"].HeaderText = "Mã ngăn tủ";
 
-                // Ẩn MAPHIEU nếu không cần
                 if (dgvSachMuon.Columns.Contains("MAPHIEU"))
-                    dgvSachMuon.Columns["MAPHIEU"].Visible = false;
+                    dgvSachMuon.Columns["MAPHIEU"].Visible = true;
+
             }
         }
 
@@ -99,10 +119,9 @@ namespace QLTV2
                 return;
             }
 
-            // Lấy thông tin sách từ DataGridView
             string maSach = dgvSachMuon.CurrentRow.Cells["MASACH"].Value.ToString();
             int maPhieu = Convert.ToInt32(dgvSachMuon.CurrentRow.Cells["MAPHIEU"].Value);
-            string maNV = Program.mId; // Mã nhân viên hiện tại
+            string maNV = Program.mId;
 
             try
             {
